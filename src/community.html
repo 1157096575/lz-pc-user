@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+</head>
+<body>
+    <div class="headerWrap">
+        <div class="header quesAnswersHead clear">
+            <h1>
+                <a href="index.html"><img src="static/images/logo(2).png" alt="" /></a>
+            </h1>
+            <div class="nav quesAnswersTl clear">
+                <ul class="clear">
+                    <li class="current"><a href="community.html">问答社区</a></li> 
+                    <li><a href="community-classify.html">分类</a></li>
+                </ul>
+                <div class="searchWrap clear">
+                    <div class="search">
+                        <input type="text" placeholder="搜索您感兴趣的内容" class="searchInput" />
+                        <a class="searchBtn" href="javascript:;"><i class="loupe"></i></a>
+                    </div>
+                    <a href="community-ques.html" class="askBtn">提问</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="quesAnswersWrap">
+        <div class="quesAnswers clear">
+            <div class="quesAnswersLeft clear">
+                <div class="rankTl clear">
+                    <div class="rankRight">
+                        <a href="javascript:void(0)" class="timeRank">时间不限</a>
+                        <ul>
+                            <li timeorder="1">时间不限</li>
+                            <li timeorder="1">时间由近及远</li>
+                            <li timeorder="2">时间由远及近</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="quesAnsLeftCon" id="searchResDiv">
+
+                </div> 
+                <div id="quesAnsLeftPage"></div> 
+            </div>
+            
+            <div class="quesAnswersRight">
+                <ul>
+                    <li class="myQues">
+                        <a href="javascript:;">我的提问</a> 
+                    </li>
+                    <li class="myAttent">
+                        <a href="javascript:;">我的关注</a>
+                    </li>
+                    <li class="myCollect">
+                        <a href="javascript:;">我的收藏</a>  
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script type="text/template" id='searchResTmpl'>
+        {{?it.length > 0}}
+            {{~ it: value : index }}
+                {{?value.comment}} <!--有回答-->
+                    <div class="leftConList clear" queid = "{{=value.id}}">
+                        <a href="community-con.html?issueid={{=value.id}}" class="toCon" data-issueid="{{=value.id}}">
+                            <div class="conListTop">
+                                <div class="conListImg">
+                                    <img src="{{=value.userLogo}}" alt="" />
+                                </div>
+                                <div class="conListQue">
+                                    <div class="queTime">{{=value.createTime}}</div>
+                                    <div class="title">{{=value.comment.userName}}律师{{=value.createTime}}回答了这个问题</div>
+                                    <div class="label">
+                                        <span>标签：</span>
+                                        <div class="labels clear">
+                                            <i>{{=value.caseType.name}}</i>
+                                        </div>
+                                    </div>
+                                    <!--<div class="question">{{=value.content}}</div>-->
+                                    <div class="question">
+                                        {{?value.queContentStr}}
+                                            <div class="subStr">
+                                                {{=value.queContentStr}}
+                                            </div>
+                                            <div class="allStr">
+                                                {{=value.content}}
+                                            </div>
+
+                                        {{??}}
+                                            <div class="subStr">
+                                                {{=value.content}}
+                                            </div>
+                                        {{?}}
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        {{?value.queContentStr}}
+                            <span class="showAnswer">显示全部</span>
+                        {{?}}
+                        <div class="conListBottom">
+                            {{?value.comment.isAgree}}
+                                <div class="conListLike yes" data-issueid="{{=value.id}}" data-issuecommentid="{{=value.comment.id}}">
+                                    <i></i>
+                                    {{?value.comment.agreeNum<=9999}}
+                                        <span data-agreenum="{{=value.comment.agreeNum}}">{{=value.comment.agreeNum}}</span>
+                                    {{??}}
+                                        <span data-agreenum="{{=value.comment.agreeNum}}">9999+</span>
+                                    {{?}}
+                                </div>
+                            {{??}}
+                                <div class="conListLike" data-issueid="{{=value.id}}" data-issuecommentid="{{=value.comment.id}}">
+                                    <i></i>
+                                    {{?value.comment.agreeNum<=9999}}  
+                                        <span data-agreenum="{{=value.comment.agreeNum}}">{{=value.comment.agreeNum}}</span>
+                                    {{??}}
+                                        <span data-agreenum="{{=value.comment.agreeNum}}">9999+</span>
+                                    {{?}}
+                                </div>
+                            {{?}}
+                            <div class="conListAnsw">
+                                <div class="answerer clear">
+                                    <div class="name">{{=value.comment.userName}}</div>
+                                    <div class="time">编辑于{{=value.comment.createTime}}</div>
+                                </div>
+                                <div class="answer">
+                                    {{?value.comment.contentSubstr}}
+                                        <div class="subStr">
+                                            {{=value.comment.contentSubstr}}
+                                        </div>
+                                        <div class="allStr">
+                                            {{=value.comment.content}}
+                                        </div>
+                                        <a class="showAnswer" href="javascript:;">显示全部</a>
+                                    {{??}}
+                                        <div class="subStr">
+                                            {{=value.comment.content}}
+                                        </div>
+                                    {{?}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="icons">
+                            <ul class="clear">
+                                {{?value.isConcern}}
+                                    <li class="attent yes" data-issueid="{{=value.id}}">取消关注</li>
+                                {{??}}
+                                    <li class="attent" data-issueid="{{=value.id}}">关注</li>
+                                {{?}}
+                                <li class="share">
+                                    分享
+                                    <div class="shareBox">
+                                        <p class="xina" data-shareurl="{{=value.url}}" data-username="{{=value.userName}}" data-content="{{=value.content}}">新浪微博</p>
+                                        <p class="weChat shareweChat" data-value="{{=value.url}}">微信</p> 
+                                    </div>
+                                </li>
+                                {{?value.comment.isCollect}} 
+                                    <li class="collect yes" data-issueid="{{=value.id}}" data-issuecommentid="{{=value.comment.id}}">取消收藏</li> 
+                                {{??}}
+                                    <li class="collect" data-issueid="{{=value.id}}" data-issuecommentid="{{=value.comment.id}}">收藏</li>  
+                                {{?}}
+                            </ul>
+                        </div>
+                    </div>
+                {{??}}  <!--没有回答-->
+                    <div class="leftConList">
+                        <a href="community-con.html?issueid={{=value.id}}" class="toCon">
+                            <div class="conListTop">
+                                <div class="conListImg">
+                                    <img src="{{=value.userLogo}}" alt="" />
+                                </div>
+                                <div class="conListQue">
+                                    <div class="queTime">{{=value.createTime}}</div>
+                                    <div class="label noAnswerLabel">
+                                        <span>标签：</span>
+                                        <div class="labels clear">
+                                            <i>{{=value.caseType.name}}</i>
+                                        </div>
+                                    </div>
+                                    <!--<div class="question">{{=value.content}}</div>-->
+                                    <div class="question">
+                                        {{?value.queContentStr}}
+                                            <div class="subStr">
+                                                {{=value.queContentStr}}
+                                            </div>
+                                            <div class="allStr">
+                                                {{=value.content}}
+                                            </div>
+
+                                        {{??}}
+                                            <div class="subStr">
+                                                {{=value.content}}
+                                            </div>
+                                        {{?}}
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        {{?value.queContentStr}}
+                            <span class="showAnswer">显示全部</span>
+                        {{?}}
+                        <div class="icons">
+                            <ul class="clear">
+                                {{?value.isConcern}}
+                                    <li class="attent yes" data-issueid="{{=value.id}}">取消关注</li>
+                                {{??}}
+                                    <li class="attent" data-issueid="{{=value.id}}" >关注</li> 
+                                {{?}}
+                                <li class="share">
+                                    分享
+                                    <div class="shareBox">
+                                        <p class="xina" data-shareurl="{{=value.url}}" data-username="{{=value.userName}}" data-content="{{=value.content}}">新浪微博</p> 
+                                        <p class="weChat shareweChat" data-value="{{=value.url}}">微信</p>  
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                {{?}}
+            {{~}}
+        {{??}}
+            <div class="noSearchRes">
+                <img src="static/images/noCon.png" alt="" />
+                <p>很抱歉，暂无相关内容</p>
+            </div>
+        {{?}}
+    </script>
+    <!--二维码-->
+    <div class="QRcodebg"></div>
+    <div class="QRcode">
+        <span class="qrTitle">
+            分享到微信朋友圈
+            <a href="javascript:void(0)" class="closeQRcode"></a>
+        </span>
+        <div class="qrTxtcenter" id="qrTxtcenter">
+        </div>
+        <p>
+            <span>打开微信，点击底部的“发现”</span><br>
+            <span>使用“扫一扫”即可将网页分享至朋友圈</span>
+        </p>
+    </div>
+     <!-- footer -->
+     <div id="footerWrap"></div>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+</head>
+<body>
+    <div class="headerWrap">
+        <div class="header quesAnswersHead clear">
+            <h1>
+                <a href="index.html"><img src="static/images/logo(2).png" alt="" /></a>
+            </h1>
+            <div class="nav quesAnswersTl clear">
+                <ul class="clear">
+                    <li><a href="community.html">问答社区</a></li>  <!-- 当前模块 current -->
+                    <li class="current"><a href="community-classify.html">分类</a></li>
+                </ul>
+                <div class="searchWrap clear">
+                    <div class="search">
+                        <input type="text" placeholder="搜索您感兴趣的内容" class="searchInput" />
+                        <a class="searchBtn" href="javascript:;"><i class="loupe"></i></a>
+                    </div>
+                    <a href="community-ques.html" class="askBtn">提问</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="quesAnswersWrap">
+        <div class="quesAnswers clear">
+            <div class="quesAnswersLeft clear">
+                <div class="rankTl clear">
+                    <div class="rankRight">
+                        <a href="javascript:void(0)" class="timeRank"  timeorder="1">时间不限</a>
+                        <ul>
+                            <li timeorder="1">时间不限</li>
+                            <li timeorder="1">时间由近及远</li>
+                            <li timeorder="2">时间由远及近</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="classfyTl">
+                    <ul class="clear caseChoose">
+                        <li caseid="1" class="land">土地房产</li>
+                        <li caseid="2" class="marry">婚姻家庭</li>
+                        <li caseid="3" class="debt">合同欠款</li>
+                        <li caseid="4" class="traffic">交通事故</li>
+                        <li caseid="5" class="safeguard">劳动维权</li>
+                        <li caseid="6" class="pool">合伙经营</li>
+                        <li caseid="7" class="criminal">刑事责任</li>
+                        <li caseid="8" class="lawyerAid">法律援助</li>
+                        <li caseid="9" class="others">其他</li>
+                        <li caseid="-1" class="all current">全部</li>
+                    </ul>
+                </div>
+                <div class="quesAnsLeftCon" id="classifyDiv">
+
+                </div> 
+                <div class="classifyPage" id="classifyPage"></div>
+            </div>
+            <div class="quesAnswersRight">
+                <ul>
+                    <li class="attened" selectconcern="0">
+                        <a href="#">已关注</a>
+                    </li>
+                    <!-- <li class="hot">
+                        <a href="#">热门</a>
+                    </li>
+                    <li class="recommend">
+                        <a href="#">推荐</a>
+                    </li> -->
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="footerWrap"></div>
+
+</body>
+</html>

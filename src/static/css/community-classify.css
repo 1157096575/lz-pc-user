@@ -1,0 +1,106 @@
+@import './base.css';
+@import './laypage.css';
+.quesAnswersWrap{width: 100%; background:#f5f5f5;}
+.quesAnswers{width: 960px;margin:0 auto; }
+.quesAnswersLeft{float: left;width: 640px;}
+.quesAnswersLeft .noSearchRes{margin: 0 0 56px 0; padding: 100px 0 200px; text-align: center; width: 100%; background:#fff; border:1px solid #eee;}
+.quesAnswersLeft .rankTl{width: 100%; height: 56px;}
+.quesAnswersLeft .rankTl .rankTlLeft{float: left; line-height: 56px; height: 56px;}
+.quesAnswersLeft .rankTlLeft a{display:block; float: left; height: 56px; line-height: 56px; margin-right: 10px;}
+.quesAnswersLeft .rankTlLeft a.current{color:#46c4fe;}
+.quesAnswersLeft .rankTlLeft .relateRank{position: relative;}
+.quesAnswersLeft .rankTlLeft .agreeRank{margin-left: 10px;}
+.quesAnswersLeft .rankTlLeft .relateRank::after{content:""; border-right: 1px solid #999; display:block; height: 14px; position: absolute; top:50%; margin-top: -7px; right:-10px; }
+.quesAnswersLeft .rankTl .rankRight{float: right; position: relative; /* display:none; */}
+.quesAnswersLeft .rankRight .timeRank{display:block;height: 56px; line-height: 56px;color:#46c4fe;}
+.quesAnswersLeft .rankRight ul{padding:5px; box-shadow: 0 0 8px 2px #eee; position: absolute; right:0; top:45px;width: 100px; display:none;background:#fff;z-index: 1;}
+.quesAnswersLeft .rankRight li{line-height: 34px; cursor:pointer;}
+.quesAnswersLeft .rankRight li.current{color:#46c4fe;}
+.quesAnswersLeft .classfyTl{width: 100%; padding:15px; background:#fff; border:1px solid #eee; margin-bottom: 10px;}
+.quesAnswersLeft .classfyTl ul li{float: left; width: 76px; text-align: center; text-align: center; height: 24px; line-height: 24px; border:1px solid #eee; border:1px solid #eee; border-radius: 5px; color:#999; cursor:pointer;margin:5px;}
+.quesAnswersLeft .classfyTl ul li.current, .quesAnswersLeft .classfyTl ul li:hover{color:#fff; background: #06bafe;}
+.quesAnsLeftCon{width: 100%;}
+.quesAnsLeftCon .leftConList{border:1px solid #eee; background:#fff; padding:20px 20px 0 20px; margin-bottom: 10px;}
+.quesAnsLeftCon .leftConList .conListTop{padding-left: 70px; width: 100%; position: relative;}
+.leftConList .conListTop .conListImg{width: 58px; height: 58px; border-radius: 5px; overflow: hidden; position: absolute; top:0; left:0;}
+.leftConList .conListTop img{width: 58px;height: 58px;}
+.leftConList .conListTop .conListQue{width: 100%; color:#999;position: relative;}
+.conListQue .queTime{position: absolute; top:0; right:0;}
+.conListQue .title{margin-bottom: 10px;margin-right: 150px; text-align: justify;}
+.conListQue .label{position: relative; padding-left: 45px; font-size: 12px; margin-bottom: 8px;}
+.conListQue .label span{position: absolute; top:0; left:0; display:block; line-height: 24px; height: 24px;}
+.conListQue .label .labels{width: 100%;}
+.conListQue .label .labels i{display:block; float: left; height: 24px;line-height: 24px; padding:0 15px; border:1px solid #eee; margin-right: 8px; border-radius: 5px;}
+/* .conListQue .question{font-size: 16px; color:#333; width: 100%; text-align: justify;} */
+.conListQue .question{font-size: 16px; color:#333; width: 100%; text-align: justify;overflow:hidden; position: relative;}
+.conListQue .question.showAll .allStr{display:block;padding-bottom: 20px;}
+.conListQue .question.showAll .subStr{display:none;}
+.conListQue .question .allStr{display:none;}
+.leftConList .showAnswer{text-align: right; text-decoration: underline;background:#f5f5f5;color:#46c4fe; float: right;display:block;padding:3px; text-align: center; margin-top: -20px;position: relative;z-index: 1; cursor:pointer;}
+.leftConList .conListBottom{width: 100%; padding-left: 70px; position: relative; margin-top: 20px;}
+.conListBottom .conListLike{width: 58px; height: 24px; line-height: 24px; background:#f5f5f5; position: absolute; left:0; top:0; padding:0 3px 0 19px;cursor:pointer; text-align: center; font-size: 12px;}
+.conListBottom .conListLike.yes{ background:#46c4fe; color:#fff;}
+.conListBottom .conListLike::before{content:'';display:block;width: 0;height: 0; position: absolute; border-top:8px solid #f5f5f5; border-right: 8px solid transparent; left:0;top:23px;}
+.conListBottom .conListLike.yes::before{border-top:8px solid #46c4fe; }
+.conListBottom .conListLike i{display:block;position: absolute; top:4px; left:5px; width: 15px;height: 20px; background:url(../images/quesAnswersIcon.png) no-repeat -25px -20px;}
+.conListBottom .conListLike.yes i{background-position: -59px -20px;}
+.conListBottom .conListAnsw{width: 100%; padding:6px 8px; background:#f5f5f5;}
+.conListBottom .conListAnsw .answerer{width: 100%; font-size: 12px; color:#999; margin-bottom: 5px;}
+.conListAnsw .answerer .name{padding-left: 18px; position: relative;float: left; margin-right: 20px;}
+.conListAnsw .answerer .name::before{content:""; display:block; background:url(../images/quesAnswersIcon.png) no-repeat -25px -56px; width: 13px;height: 15px; position: absolute; top:0; left:0;}
+.conListAnsw .answerer .time{float: left;}
+.conListAnsw .answer{line-height: 20px; overflow:hidden; text-align: justify;position: relative;width: 100%;}
+.conListAnsw .answer .allStr{display:none;}
+.conListAnsw .answer.showAll{height:auto; padding-bottom: 30px;}
+.conListAnsw .answer.showAll .allStr{display:block;}
+.conListAnsw .answer.showAll .subStr{display:none;}
+.conListAnsw .answer .showAnswer{position: absolute; bottom:-2px; right:0; background:#f5f5f5; z-index: 1; padding-left: 3px; color:#46c4fe;text-decoration: underline; }
+.icons{margin: 20px 0 0 70px; border-top: 1px solid #eee; padding:10px 0 0;}
+.icons li{float: left; margin-right: 26px;padding-left: 17px; position: relative; cursor:pointer; padding-bottom: 15px; /* width: 80px; */}
+.icons li:hover{color:#06bafe;}
+.icons li.yes{padding-left: 0;}
+.icons li::before{content:""; display:block; position: absolute; top:3px; left:0; width: 14px; height: 14px; background:url(../images/quesAnswersIcon.png) no-repeat -97px -20px;}
+.icons li.yes::before{background:none;}
+.icons .share::before{background-position: -173px -20px;}
+.icons .collect::before{background-position:-240px -20px;}
+.icons .attent:hover::before{background-position:-132px -19px ;}
+.icons .share:hover::before{background-position:-206px -20px ;}
+.icons .collect:hover::before{background-position:-273px -20px ;} 
+.icons .share{position: relative;}
+.icons .share .shareBox{position: absolute;top:30px; left:0; width: 120px; background:#fff; z-index: 2; border:1px solid #eee; border-radius: 3px; display:none;}
+.icons .share:hover .shareBox,.icons .share .shareBox:hover{display:block;}
+.icons .share .shareBox::before{content:""; position: absolute; top:-4px; left:17px;z-index: 2; background:#fff; display:block;width: 5px;height: 5px; border-top: 2px solid #eee; border-left: 2px solid #eee; /* border-top: 8px solid #fff; border-right: 8px solid transparent;  */-webkit-transform: rotate(45deg);
+   -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+     -o-transform: rotate(45deg);
+        transform: rotate(45deg);}
+.icons .share .shareBox p{height: 42px;line-height: 42px; padding-left: 40px;position: relative;}
+.icons .share .shareBox p::before{width: 24px;height: 24px; content:""; background:url(../images/sina_icon.png) no-repeat center; display:block; position: absolute;top:9px; left:10px;}
+.icons .share .shareBox p:hover{background:#f5f5f5;}
+.icons .share .shareBox .weChat::before{background-image:url(../images/weChat_icon.png);}
+.classifyPage {padding:20px 0;}
+.quesAnswersRight{width: 310px; float: right;padding-top: 56px;}
+.quesAnswersRight ul{width: 100%; background:#fff; padding:20px; line-height: 40px; border:1px solid #eee;}
+.quesAnswersRight ul li{position: relative;}
+.quesAnswersRight li a{display:block; width: 100%; height: 100%;padding-left: 25px; font-size: 16px; }
+.quesAnswersRight li:hover a{ color:#666;}
+.quesAnswersRight li.current a{ color:#06bafe;}
+.quesAnswersRight li a::before{content:""; display:block; width: 18px; height: 22px; background:url(../images/quesAnswersIcon.png) no-repeat -318px -20px; position: absolute; top:11px; left:0;}
+.quesAnswersRight .attened a::before{background-position: -389px -20px;}
+.quesAnswersRight .hot a::before{background-position: -27px -138px;}
+.quesAnswersRight .recommend a::before{background-position: -101px -135px;}
+.quesAnswersRight .attened.current a::before{background-position: -422px -20px;}
+.quesAnswersRight .hot.current a::before{background-position: -59px -138px;}
+.quesAnswersRight .recommend.current a::before{background-position: -137px -135px;}
+/*显示二维码*/
+.QRcodebg{width: 100%;height: 100%;position: fixed;top:0; left:0;z-index: 9; display:none; background:rgba(0,0,0,0.5); }
+.QRcode{border: 1px solid #eee;padding:10px;position: fixed;left:50%; top:-50%; background:#fff; z-index: 10; border-radius: 5px; display:none; -webkit-transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);}
+.closeQRcode{width: 30px;height: 30px;display:block; background:url(../images/spirite.png) no-repeat -102px -359px;position: absolute; right:10px; top:13px;}
+.closeQRcode:hover{background-color:#eee; border-radius: 50%;}
+.qrTitle{text-align: left;font-size: 14px;color: #666;font-weight: bold;padding: 10px 0;display: inline-block;}
+.qrTxtcenter img,.qrTxtcenter canvas,.qrTxtcenter{text-align:center;height: 212px;width: 212px;overflow:hidden;margin-bottom: 10px;}
+.QRcode p{font-size: 12px;color: #999;text-align: left} 
