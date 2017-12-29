@@ -6,10 +6,6 @@ var glob = require('glob');
 var path = require('path');
 var CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin; //将公共模块拆出来
 
-/*let siteEnv = {
-  name: 'pc project',
-  host: 'http://192.168.10.224:7081'
-};*/
 let siteConfig = require('./config.js')
 let siteEnv = siteConfig[process.env.NODE_ENV +'Env'];
 
@@ -21,20 +17,6 @@ function resolve (dir) {
 var srcDir = path.resolve(process.cwd(), 'src');
 //每个html对应一个同名的js
 //多入口文件
-/*var entries = function() {
-  var jsDir = path.resolve(__dirname, srcDir+'/static/js/')
-  console.log(jsDir);
-  var entryFiles = glob.sync(jsDir + '/*.{js,jsx}')
-  console.log(entryFiles);
-  var map = {};
-  for (var i = 0; i < entryFiles.length; i++) {
-    var filePath = entryFiles[i];
-    var filename = filePath.substring(filePath.lastIndexOf('\/') + 1, filePath.lastIndexOf('.'));
-    map[filename] = filePath;
-  }
-  console.log(map);
-  return map;
-}*/
 //如果js文件夹里有其他js,避免打包多余的js
 function getNameFn(st) {
   return st.substring(st.lastIndexOf('\/') + 1, st.lastIndexOf('.'));
