@@ -70,7 +70,31 @@ class communityPage extends Base{
     };
     //微信分享
     weChatShareEvent() {
+        console.log(11111111)
+        //require('../lib/qrcode.min.js');
+        //require('../lib/jquery.qrcode.js');
+        //require('../lib/qrcode.js');
+        //console.log(new QRCode())
+        /*$(".shareweChat").on('click', function(event) {
+            var qrcode;
+            if(qrcode){
+                qrcode.clear();
+            }
+            $("#qrTxtcenter").html('');
+            qrcode = new QRCode(document.getElementById("qrTxtcenter"));
+            console.log(QRCode)
+            qrcode.makeCode($(this).attr('data-value'));
+            $(".QRcodebg").stop().slideDown(300);
 
+            $(".QRcode").stop().show().animate({"top":"45%"}, 300);
+        });
+        $(".closeQRcode, .QRcodebg").on('click', function(event) {
+            event.preventDefault();
+            $(".QRcodebg").stop().slideUp(300);
+            $(".QRcode").animate({"top":"-50%"}, 300,function(){
+                $(".QRcode").hide();
+            });
+        });*/
     };
     //分页
     searchResPage(curr){

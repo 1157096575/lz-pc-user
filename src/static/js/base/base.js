@@ -133,6 +133,87 @@ class Base{
     loadinghide_new(dom) {
         $(dom).children('.loadEffectWrap').remove();
     };
+    //封装ajax请求
+    ajaxFn(url, type, data, f1, f2, f3, f4) {
+        var _self = this;
+        $.ajax({
+            url: _self.host + url,
+            headers: {
+                "X-Requested-With":"XMLHttpRequest",
+                token: window.sessionStorage.getItem('token_user') || 1
+            },
+            type: type, 
+            data: data, 
+            success:function(res){
+                var res = JSON.parse(res);
+                if(res){
+                    var code = res.code;
+                    switch(code){
+                        case 1:
+                            f1 && f1(res);
+                            break;
+                        case 0:
+                            var errmsg = res.msg; 
+                            _self.errTip(errmsg);
+                            break;
+                        case 10:
+                            sessionStorage.clear();
+                            window.location.href = "./login.html";
+                            break;
+                        case 100:
+                            var errmsg = "律师未认证，无法进行此操作";
+                            _self.errTip(errmsg);
+                        default:
+                            if(f4){
+                                f4()
+                            }else{
+                                var errmsg = res.msg;
+                                _self.errTip(errmsg);
+                            }
+                    }
+                }
+            },
+            error:function(res){
+                var res = JSON.parse(res);
+                f2 && f2(res)
+            },
+            complete:function(res){
+                f3 && f3(res);
+            }
+        })
+    };
+    //处理ajax请求成功的数据
+    dealAjaxSucRes(res, fn) {
+        var _self = this;
+        if (res.code == 1) {
+            fn && fn(res);
+        } else if (res.code == 0) {
+            var errmsg = res.msg; //提示信息
+            _self.errTip(errmsg);
+        } else if (res.code == 10 || res.code == 11) {
+            sessionStorage.clear();
+            window.location.href = "./login.html";
+        } else if (res.code == 100) {
+            var errmsg = "律师未认证，无法进行此操作"; //提示信息
+            _self.errTip(errmsg);
+        } else {
+            var errmsg = res.msg; //提示信息
+            _self.errTip(errmsg);
+        }
+    };
+    //请求错误提示框
+    errTip(txt) { //txt为错误信息
+        var errDivWrap = "<div class='errDivWrap'></div>";
+        if ($(".errDivWrap").length < 1) {
+            $('body').prepend(errDivWrap);
+            var tag = "<div class='errDiv'><h3>提示</h3><p>" + txt + "</p><i class='closeBtn'></i><div class='sureDiv'><a class='sureBtn'>确定</a></div></div>";
+            $(".errDivWrap").append(tag);
+            $(".errDivWrap").show();
+            $(".errDiv .closeBtn, .errDiv .sureDiv").on('click', function(event) {
+                $(".errDivWrap").remove();
+            });
+        }
+    };
 };
 
 module.exports = Base;
