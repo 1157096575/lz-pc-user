@@ -2,7 +2,7 @@
 
 > PC项目
 
-webpack+es6搭建的多页项目 jquery doT.js mock.js
+webpack+es6搭建的多页项目 jquery, doT.js, mock.js 前后端分离
 
 ## Build Setup
 
