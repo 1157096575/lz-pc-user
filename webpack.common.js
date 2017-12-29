@@ -39,7 +39,6 @@ var entries = function() {
   }
   return map;
 }
-
 //多个html
 var html_plugins = function () {
   var r = []
