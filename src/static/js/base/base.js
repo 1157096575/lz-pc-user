@@ -8,6 +8,7 @@ class Base{
     };
     ready() { 
         console.log('base');
+        this.searchCommunity();
     };
     footFn() {
         var aa = 1;
@@ -214,6 +215,262 @@ class Base{
             });
         }
     };
+    //验证空值
+    checknll(fromsj) {
+        if (fromsj && fromsj.length > 0) {
+            for (var i = 0; i < fromsj.length; i++) {
+                if (i < fromsj.length - 1) {
+                    if ($.trim(fromsj[i]) == "") {
+                        return true;
+                    }
+                } else {
+                    if ($.trim(fromsj[i]) == "") {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            }
+        } else {
+            return true;
+        }
+    };
+    //关注
+    attentEvent(dom){
+        var _self = this;
+        $(dom).on('click', function(event) {
+            /*if(_self.config.token=='' || _self.config.token == 'undefined'){ //未登录
+                //user.tip(".tipCon");//登录提示
+                //user.bounced(".tipSureBtn",".loginWrap");//登录框
+                //user.loginEvent();
+                return;
+            }*/
+            if (_self.checknll(_self.config.token)) {
+                return;
+            }
+            var $that = $(this);
+            //取消关注
+            if($that.hasClass('attentClick')){
+                return;
+            }
+            $that.addClass('attentClick');
+            var issueId = parseInt($that.attr("data-issueid"));
+            if($that.hasClass('yes')){
+                var url = '/user/delete-issue-concern',
+                    data = {issueId: issueId};
+                function attentResFn(attentRes){
+                    $that.removeClass('yes');
+                    $that.text("关注");
+                }
+                function errFn(attentRes){
+                    if (attentRes) {
+                        var errmsg = "取消关注失败";
+                        _self.errTip(errmsg);
+                    }
+                }
+                function compFn(){
+                    $that.removeClass('attentClick');
+                }
+                _self.ajaxFn(url,"POST", data, attentResFn, errFn, compFn);
+                //关注
+            }else{
+                var url = '/user/save-issue-concern',
+                    data = {issueId: issueId};
+                function attentResFn(attentRes){
+                    $that.addClass('yes');
+                    $that.text("取消关注");
+                }
+                function errFn(attentRes){
+                    if (attentRes) {
+                        var errmsg = "关注失败";
+                        _self.errTip(errmsg);
+                    }
+                }
+                function compFn(){
+                    $that.removeClass('attentClick');
+                }
+                _self.ajaxFn(url, "POST", data, attentResFn, errFn, compFn);
+            }
+        });
+    };
+    //收藏
+    collectEvent(dom){
+        var _self = this;
+        $(dom).on('click', function(event) {
+            console.log(_self.config.token);
+            if (_self.checknll(_self.config.token)) {
+                return;
+            }
+            var $that = $(this);
+            if($that.hasClass('collectClick')){
+                return;
+            }
+            $that.addClass('collectClick');
+            if($that.hasClass('yes')){
+                var commentId = parseInt($that.attr("data-issuecommentid"));
+                //取消收藏
+                var url = '/user/delete-issue-collect',
+                    data = {commentId: commentId};
+                function successFn(res){
+                    $that.removeClass('yes');
+                    $that.text("收藏");
+                }
+                function errFn(res){
+                    if (res) {
+                        var errmsg = "取消收藏失败";
+                        _self.errTip(errmsg);
+                    }
+                }
+                function compFn(){
+                    $that.removeClass('collectClick');
+                }
+                _self.ajaxFn(url, "POST", data, successFn, errFn, compFn);
+        
+                //收藏
+            }else{
+                var issueId = parseInt($that.attr("data-issueid"));
+                var issueCommentId = parseInt($that.attr("data-issuecommentid"));
+                var url = '/user/save-issue-collect',
+                    data = {issueId: issueId, commentId: commentId};
+                function successFn(res){
+                    $that.addClass('yes');
+                    $that.text("取消收藏");
+                }
+                function errFn(res){
+                    if (res) {
+                        var errmsg = "收藏失败"; //提示信息
+                        _self.errTip(errmsg);
+                    }
+                }
+                function compFn(){
+                    $that.removeClass('collectClick');
+                }
+                _self.ajaxFn(url, "POST", data, successFn, errFn, compFn);
+            }
+        });
+    };
+    //新浪分享
+    sinaShareEvent(dom){
+        $(dom).on('click',function(){
+            var shareSinauserName =  $(this).attr('data-username') + ' '; //作者
+            var shareSinacontent = shareSinauserName+ $(this).attr('data-content'); //内容
+            var shareSinaurl = $(this).attr('data-shareurl'); //url
+            var sina = 'http://service.weibo.com/share/share.php?title='+shareSinacontent+'&url='+shareSinaurl;
+            window.open(sina);
+        });
+    };
+    //微信分享
+    weChatShareEvent(){
+    };
+    //点赞
+    likeEvent(dom){
+        var _self = this;
+        $(dom).on('click', function(event) {
+            if (_self.checknll(_self.config.token)) {
+                return;
+            }
+            var $that = $(this);
+            if($that.hasClass('conListLikeClick')){
+                return;
+            }
+            $that.addClass('conListLikeClick');
+            if($that.hasClass('yes')){
+                var commentId = parseInt($that.attr("data-issuecommentid"));
+                //取消点赞
+                var url = '/user/delete-agree-info',
+                    data = {commentId: commentId};
+                function successFn(res){
+                    $that.removeClass('yes');
+                    var agreeNum = parseInt($that.children('span').attr('data-agreenum'))-1;
+                    if(agreeNum<=9999){
+                        $that.children('span').text(agreeNum);
+                    }else{
+                       $that.children('span').text("9999+"); 
+                    }
+                    $that.children('span').attr('data-agreenum',agreeNum);
+                }
+                function errFn(res){
+                    if (res) {
+                        var errmsg = "取消点赞失败"; //提示信息
+                        _self.errTip(errmsg);
+                    }
+                }
+                function compFn(){
+                    $that.removeClass('conListLikeClick');
+                }
+                _self.ajaxFn(url, "POST", data, successFn, errFn, compFn);
+                //点赞
+            }else{
+                var issueId = parseInt($that.attr("data-issueid"));
+                var issueCommentId = parseInt($that.attr("data-issuecommentid"));
+                var url = '/user/save-agree-info',
+                    data = {issueId: issueId, commentId: commentId};
+                function successFn(res){
+                    $that.addClass('yes');
+                    var agreeNum = parseInt($that.children('span').attr('data-agreenum'))+1;
+                    if(agreeNum<=9999){
+                        $that.children('span').text(agreeNum);
+                    }else{
+                       $that.children('span').text("9999+"); 
+                    }
+                    $that.children('span').attr('data-agreenum',agreeNum);
+                }
+                function errFn(res){
+                    if (res) {
+                        var errmsg = "点赞失败"; //提示信息
+                        _self.errTip(errmsg);
+                    }
+                }
+                function compFn(){
+                    $that.removeClass('conListLikeClick');
+                }
+                _self.ajaxFn(url, "POST", data, successFn, errFn, compFn);
+            }
+        });
+    };
+    //社区头部搜索(社区模块社区首页外的页面引用)
+    searchCommunity() {
+        console.log(0);
+        $(".searchBtn").on('click', function(event) {
+            console.log(111111111111);
+            var searchCon = $(this).siblings('.searchInput').val().replace(/\s/g, "");
+            if (searchCon) {
+                window.sessionStorage.setItem("searchCon_community", searchCon);
+                 window.location.href = "community.html"; //跳到社区首页
+            } else {
+                $(this).siblings('.searchInput').val("");
+                $(this).siblings('.note').show().addClass('red');
+            }
+        });
+        if($(".searchInput").val().replace(/\s/g, "")){
+            $(".searchInput").val('');
+            $('.searchInput').siblings('.note').show().removeClass('red');
+        }
+        $('.search .searchInput').on('keydown', function(event) {
+            //$(this).removeClass('red');
+            $(this).siblings('.note').hide().removeClass('red');
+        });
+        $(document).on('click', function (e) {
+            if ($(e.target).eq(0).is($(".search")) || $(e.target).eq(0).is($(".search .note")) || $(e.target).eq(0).is($(".search .searchInput"))) {
+                return;
+            }
+            if($('.search .searchInput').val().replace(/\s/g, "")==""){
+                $('.search .note').show();
+                $('.search .searchInput').val("");
+            }
+        });
+        $(".searchInput").keydown(function(e) {
+            // 兼容FF和IE和Opera
+            var theEvent = e || window.event;
+            var code = theEvent.keyCode || theEvent.which || theEvent.charCode;
+            if (code == 13) {
+                //回车执行查询
+                e.preventDefault();
+                $(".searchBtn").click();
+            }
+        });
+    };
 };
 
+//new Base().searchCommunity();
 module.exports = Base;

@@ -4,7 +4,8 @@ import Base from 'base';
 class communityPage extends Base{
     constructor() {
         var config = {
-            searchCon:''
+            searchCon:'',
+            token: window.sessionStorage.getItem('token_user') || "1",
         }
         super(config);
     };
@@ -57,44 +58,6 @@ class communityPage extends Base{
             $(".rankRight .timeRank").attr("timeorder",$(this).attr("timeorder"));
             _self.searchResPage();
         });
-    };
-    //新浪分享
-    sinaShareEvent(){
-        $('.xina').on('click',function(){
-            var shareSinauserName = $(this).attr('data-username') + ' ';
-            var shareSinacontent = shareSinauserName+ $(this).attr('data-content');
-            var shareSinaurl = $(this).attr('data-shareurl');
-            var sina = 'http://service.weibo.com/share/share.php?title='+shareSinacontent+'&url='+shareSinaurl;
-            window.open(sina);
-        });
-    };
-    //微信分享
-    weChatShareEvent() {
-        console.log(11111111)
-        //require('../lib/qrcode.min.js');
-        //require('../lib/jquery.qrcode.js');
-        //require('../lib/qrcode.js');
-        //console.log(new QRCode())
-        /*$(".shareweChat").on('click', function(event) {
-            var qrcode;
-            if(qrcode){
-                qrcode.clear();
-            }
-            $("#qrTxtcenter").html('');
-            qrcode = new QRCode(document.getElementById("qrTxtcenter"));
-            console.log(QRCode)
-            qrcode.makeCode($(this).attr('data-value'));
-            $(".QRcodebg").stop().slideDown(300);
-
-            $(".QRcode").stop().show().animate({"top":"45%"}, 300);
-        });
-        $(".closeQRcode, .QRcodebg").on('click', function(event) {
-            event.preventDefault();
-            $(".QRcodebg").stop().slideUp(300);
-            $(".QRcode").animate({"top":"-50%"}, 300,function(){
-                $(".QRcode").hide();
-            });
-        });*/
     };
     //分页
     searchResPage(curr){
@@ -199,8 +162,15 @@ class communityPage extends Base{
                             $(this).text("显示全部");
                         }
                     });
-                    _self.sinaShareEvent();
+                    _self.attentEvent('.attent');
+                    //点击收藏图标
+                    _self.collectEvent('.collect');
+                    //新浪分享
+                    _self.sinaShareEvent('.xina');
+                    //微信分享
                     _self.weChatShareEvent();
+                    //点赞
+                    _self.likeEvent('.conListLike');
                 }
             },
             error:function(res){

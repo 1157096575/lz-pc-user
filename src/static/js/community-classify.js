@@ -14,6 +14,7 @@ class commClassifyPage extends Base{
         console.log(this.host);
         this.classifyPage(1,-1,0);
         this.conditionFn();
+        this.searchCommunity();
     };
     //条件赛选
     conditionFn(){
@@ -158,15 +159,15 @@ class commClassifyPage extends Base{
                 }
             });
             //点击关注图标
-            _self.attentEvent();
+            _self.attentEvent('.attent');
             //点击收藏图标
-            _self.collectEvent();
+            _self.collectEvent('.collect');
             //新浪分享
-            _self.sinaShareEvent();
+            _self.sinaShareEvent('.xina');
             //微信分享
             _self.weChatShareEvent();
             //点赞
-            _self.likeEvent();
+            _self.likeEvent('.conListLike');
         }
         function erhFn(){
             var errHtml = '<div class="noSearchRes">';
@@ -176,14 +177,15 @@ class commClassifyPage extends Base{
             $("#classifyDiv").html(errHtml);
         }
         function errFn(res){
-            _self.cancelForbidden();
             erhFn();
         }
         function compFn(){
+            _self.cancelForbidden();
             console.log('comp');
         }
 
         function f4() {
+            console.log('f4');
             _self.config.totalPage = 0;
             $("#classifyPage").hide();
             erhFn();
@@ -191,7 +193,7 @@ class commClassifyPage extends Base{
         _self.ajaxFn(url, "get", data, successFn, errFn, compFn, f4);
     };
     //关注
-    attentEvent(){
+   /* attentEvent(){
         var _self = this;
         $(".attent").on('click', function(event) {
             if(_self.config.token=='' || _self.config.token == 'undefined'){ //未登录
@@ -244,9 +246,9 @@ class commClassifyPage extends Base{
                 _self.ajaxFn(url, "POST", data, attentResFn, errFn, compFn);
             }
         });
-    };
+    };*/
     //收藏
-    collectEvent(){
+    /*collectEvent(){
         var _self = this;
         $(".collect").on('click', function(event) {
             if(_self.config.token=='' || _self.config.token == 'undefined'){ //未登录
@@ -302,9 +304,9 @@ class commClassifyPage extends Base{
                 _self.ajaxFn(url, "POST", data, successFn, errFn, compFn);
             }
         });
-    };
+    };*/
     //新浪分享
-    sinaShareEvent(){
+    /*sinaShareEvent(){
         $('.xina').on('click',function(){
             var shareSinauserName =  $(this).attr('data-username') + ' '; //作者
             var shareSinacontent = shareSinauserName+ $(this).attr('data-content'); //内容
@@ -312,12 +314,12 @@ class commClassifyPage extends Base{
             var sina = 'http://service.weibo.com/share/share.php?title='+shareSinacontent+'&url='+shareSinaurl;
             window.open(sina);
         });
-    };
+    };*/
     //微信分享
-    weChatShareEvent(){
-    };
+    /*weChatShareEvent(){
+    };*/
     //点赞
-    likeEvent(){
+    /*likeEvent(){
         var _self = this;
         $(".conListLike").on('click', function(event) {
             if(_self.config.token=='' || _self.config.token == 'undefined'){ //未登录
@@ -384,7 +386,7 @@ class commClassifyPage extends Base{
                 _self.ajaxFn(url, "POST", data, successFn, errFn, compFn);
             }
         });
-    }
+    }*/
 };
 
 new commClassifyPage();
