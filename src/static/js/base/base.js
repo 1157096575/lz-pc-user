@@ -202,11 +202,12 @@ class Base{
     };
     //关注
     attentEvent(dom){
-        var _self = this, $that = $(this);
+        var _self = this;
         $(dom).on('click', function(event) {
             if (_self.checknll(_self.config.token)) {
                 return;
             }
+            var $that = $(this);
             //取消关注
             if($that.hasClass('attentClick')){
                 return;
@@ -249,12 +250,14 @@ class Base{
     };
     //收藏
     collectEvent(dom){
-        var _self = this, $that = $(this);
+        var _self = this;
         $(dom).on('click', function(event) {
             if (_self.checknll(_self.config.token)) {
                 //未登录处理
                 return;
             }
+            var $that = $(this);
+            console.log(_self.config.token)
             if($that.hasClass('collectClick')){
                 return;
             }
@@ -265,10 +268,12 @@ class Base{
                 var url = '/user/delete-issue-collect',
                     data = {commentId: commentId};
                 function successFn(res){
+                    console.log(res)
                     $that.removeClass('yes');
                     $that.text("收藏");
                 }
                 function errFn(res){
+                    console.log(res)
                     if (res) {
                         var errmsg = "取消收藏失败";
                         _self.errTip(errmsg);
