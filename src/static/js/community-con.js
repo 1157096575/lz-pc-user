@@ -66,13 +66,9 @@ class commConPage extends Base{
     //更多回答
     getMoreComment(self){
         var _self = this;
-        if(_self.config.token=='' || _self.config.token=='undefined'){ //未登录
-            /*user.tip(".tipCon");//登录提示
-            user.bounced(".tipSureBtn",".loginWrap");//登录框
-            user.loginEvent();*/
+        if (_self.checknll(_self.config.token)) {
             return;
         }
-        
         var $that = $(self);
         var isMine = $that.attr('data-ismine') == 'false' ? false : true;
         if($that.hasClass('getMoreCommentClick')){
@@ -159,10 +155,7 @@ class commConPage extends Base{
     agreeEvent(self){
         console.log(self);
         var _self = this;
-        if(_self.config.token=='' || _self.config.token == 'undefined'){ //未登录
-            /*user.tip(".tipCon");//登录提示
-            user.bounced(".tipSureBtn",".loginWrap");//登录框
-            user.loginEvent();*/
+        if (_self.checknll(_self.config.token)) {
             return;
         }
         var $that = $(self);
@@ -215,10 +208,7 @@ class commConPage extends Base{
     //收藏
     collectEvent(self){
         var _self = this;
-        if(_self.config.token=='' || _self.config.token == 'undefined'){ //未登录
-            /*user.tip(".tipCon");//登录提示
-            user.bounced(".tipSureBtn",".loginWrap");//登录框
-            user.loginEvent();*/
+        if (_self.checknll(_self.config.token)) {
             return;
         }
         var $that = $(self);
@@ -264,10 +254,7 @@ class commConPage extends Base{
     //关注
     issueConcernEvent(self){
         var _self = this;
-        if(_self.config.token=='' || _self.config.token == 'undefined'){ //未登录
-            /*user.tip(".tipCon");//登录提示
-            user.bounced(".tipSureBtn",".loginWrap");//登录框
-            user.loginEvent();*/
+        if (_self.checknll(_self.config.token)) {
             return;
         }
         var $that = $(self);
@@ -313,10 +300,7 @@ class commConPage extends Base{
     //查看追问
     getAskAgain(self){
         var _self = this;
-        if(_self.config.token=='' || _self.config.token == 'undefined'){ //未登录
-            /*user.tip(".tipCon");//登录提示
-            user.bounced(".tipSureBtn",".loginWrap");//登录框
-            user.loginEvent();*/
+        if (_self.checknll(_self.config.token)) {
             return;
         }
         var $that = $(self);
@@ -591,10 +575,7 @@ class commConPage extends Base{
     //刷新追问信息
     replyLoadAgain(self){
         var _self = this;
-        if(_self.config.token=='' || _self.config.token=='undefined'){ //未登录
-            /*user.tip(".tipCon");//登录提示
-            user.bounced(".tipSureBtn",".loginWrap");//登录框
-            user.loginEvent();*/
+        if (_self.checknll(_self.config.token)) {
             return;
         }
         var $that = $(self);
