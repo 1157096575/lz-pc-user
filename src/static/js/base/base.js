@@ -86,7 +86,7 @@ class Base{
             }
         });
     };
-    //优化加载
+    //加载
     loading_new(dom) {
         var domH = $(dom).height();
         $(dom).css('position', 'relative');
@@ -202,18 +202,11 @@ class Base{
     };
     //关注
     attentEvent(dom){
-        var _self = this;
+        var _self = this, $that = $(this);
         $(dom).on('click', function(event) {
-            /*if(_self.config.token=='' || _self.config.token == 'undefined'){ //未登录
-                //user.tip(".tipCon");//登录提示
-                //user.bounced(".tipSureBtn",".loginWrap");//登录框
-                //user.loginEvent();
-                return;
-            }*/
             if (_self.checknll(_self.config.token)) {
                 return;
             }
-            var $that = $(this);
             //取消关注
             if($that.hasClass('attentClick')){
                 return;
@@ -223,15 +216,13 @@ class Base{
             if($that.hasClass('yes')){
                 var url = '/user/delete-issue-concern',
                     data = {issueId: issueId};
-                function attentResFn(attentRes){
+                function attentResFn(){
                     $that.removeClass('yes');
                     $that.text("关注");
                 }
-                function errFn(attentRes){
-                    if (attentRes) {
-                        var errmsg = "取消关注失败";
-                        _self.errTip(errmsg);
-                    }
+                function errFn(){
+                    var errmsg = "取消关注失败";
+                    _self.errTip(errmsg);
                 }
                 function compFn(){
                     $that.removeClass('attentClick');
@@ -241,15 +232,13 @@ class Base{
             }else{
                 var url = '/user/save-issue-concern',
                     data = {issueId: issueId};
-                function attentResFn(attentRes){
+                function attentResFn(){
                     $that.addClass('yes');
                     $that.text("取消关注");
                 }
-                function errFn(attentRes){
-                    if (attentRes) {
-                        var errmsg = "关注失败";
-                        _self.errTip(errmsg);
-                    }
+                function errFn(){
+                    var errmsg = "关注失败";
+                    _self.errTip(errmsg);
                 }
                 function compFn(){
                     $that.removeClass('attentClick');
@@ -260,13 +249,12 @@ class Base{
     };
     //收藏
     collectEvent(dom){
-        var _self = this;
+        var _self = this, $that = $(this);
         $(dom).on('click', function(event) {
-            console.log(_self.config.token);
             if (_self.checknll(_self.config.token)) {
+                //未登录处理
                 return;
             }
-            var $that = $(this);
             if($that.hasClass('collectClick')){
                 return;
             }
@@ -290,7 +278,6 @@ class Base{
                     $that.removeClass('collectClick');
                 }
                 _self.ajaxFn(url, "POST", data, successFn, errFn, compFn);
-        
                 //收藏
             }else{
                 var issueId = parseInt($that.attr("data-issueid"));
@@ -302,10 +289,8 @@ class Base{
                     $that.text("取消收藏");
                 }
                 function errFn(res){
-                    if (res) {
-                        var errmsg = "收藏失败"; //提示信息
-                        _self.errTip(errmsg);
-                    }
+                    var errmsg = "收藏失败";
+                    _self.errTip(errmsg);
                 }
                 function compFn(){
                     $that.removeClass('collectClick');
@@ -385,9 +370,7 @@ class Base{
     };
     //社区头部搜索(社区模块社区首页外的页面引用)
     searchCommunity() {
-        console.log(0);
         $(".searchBtn").on('click', function(event) {
-            console.log(111111111111);
             var searchCon = $(this).siblings('.searchInput').val().replace(/\s/g, "");
             if (searchCon) {
                 window.sessionStorage.setItem("searchCon_community", searchCon);
@@ -415,11 +398,9 @@ class Base{
             }
         });
         $(".searchInput").keydown(function(e) {
-            // 兼容FF和IE和Opera
             var theEvent = e || window.event;
             var code = theEvent.keyCode || theEvent.which || theEvent.charCode;
             if (code == 13) {
-                //回车执行查询
                 e.preventDefault();
                 $(".searchBtn").click();
             }

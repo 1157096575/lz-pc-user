@@ -176,11 +176,9 @@ class communityPage extends Base{
                     var contentStr = searchResData[i].content || "";
                     var queContentStr = searchResData[i].queContentStr || "";
                     if(content && contentStr){
-                        var newcontentStr = _self.emphasizeKey(content,contentStr);
-                        searchResData[i].content = newcontentStr;
+                        searchResData[i].content = _self.emphasizeKey(content,contentStr);
                         if(queContentStr){
-                            var newqueContentStr = _self.emphasizeKey(content,queContentStr);
-                            searchResData[i].queContentStr = newqueContentStr;
+                            searchResData[i].queContentStr = _self.emphasizeKey(content,queContentStr);
                         }
                     }
                 }

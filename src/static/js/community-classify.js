@@ -16,41 +16,43 @@ class commClassifyPage extends Base{
         this.conditionFn();
         this.searchCommunity();
     };
-    //条件赛选
+    //条件筛选
     conditionFn(){
-        var _self = this;
-        $(".quesAnswersLeft .rankRight .timeRank").on('click', function(event) {
+        var _self = this,
+            $rankRight = $(".quesAnswersLeft .rankRight"),
+            $timeRank = $rankRight.children('.timeRank'),
+            $attened = $(".quesAnswersRight ul .attened"),
+            $classfytlUl = $(".classfyTl ul"),
+            $classfytlUlCur = $classfytlUl.children('.current');
+        $timeRank.on('click', function(event) {
             $(this).siblings('ul').show();
         });
         //选择时间排序
-        $(".quesAnswersLeft .rankRight").on('click',"li", function(event) {
+        $rankRight.on('click',"li", function(event) {
             _self.forbidden();
             $(this).addClass('current').siblings('li').removeClass('current');
             $(this).parent().siblings('.timeRank').html($(this).text());
             $(this).parent().hide();
-            $(".quesAnswersLeft .rankRight .timeRank").attr('timeorder', $(this).attr("timeorder"));
+            $timeRank.attr('timeorder', $(this).attr("timeorder"));
             var orderBy = parseInt($(this).attr("timeorder"));
-            var issueType = parseInt($(".classfyTl ul li.current").attr('caseid'));
-            var selectConcern = parseInt($(".quesAnswersRight ul .attened").attr("selectconcern"));
+            var issueType = parseInt($classfytlUlCur.attr('caseid'));
+            var selectConcern = parseInt($attened.attr("selectconcern"));
             _self.classifyPage(orderBy,issueType,selectConcern);
         });
         //点击案件类型
         $(".classfyTl ul").on('click', 'li', function(event) {
             $(this).addClass('current').siblings('li').removeClass("current");
             var issueType = parseInt($(this).attr('caseid'));
-            var orderBy = parseInt($(".quesAnswersLeft .rankRight .timeRank").attr('timeorder'));
-            var selectConcern = parseInt($(".quesAnswersRight ul .attened").attr("selectconcern"));
+            var orderBy = parseInt($timeRank.attr('timeorder'));
+            var selectConcern = parseInt($attened.attr("selectconcern"));
             _self.forbidden();
             _self.classifyPage(orderBy,issueType,selectConcern);
         });
         //是否查询已关注的列表
-        $(".quesAnswersRight ul .attened").on('click', function(event) {
-            /*if(communityClassify.data.token=='' || communityClassify.data.token == 'undefined'){ //未登录
-                user.tip(".tipCon");//登录提示
-                user.bounced(".tipSureBtn",".loginWrap");//登录框
-                user.loginEvent();
+        $attened.on('click', function(event) {
+            if (_self.checknll(_self.config.token)) {
                 return;
-            }*/
+            }
             _self.forbidden();
             if($(this).hasClass('current')){
                 $(this).removeClass('current');
@@ -61,8 +63,8 @@ class commClassifyPage extends Base{
                 $(this).attr("selectconcern",1);
                 var selectConcern = 1;
             }
-            var issueType = parseInt($(".classfyTl ul li.current").attr('caseid'));
-            var orderBy = parseInt($(".quesAnswersLeft .rankRight .timeRank").attr('timeorder'));
+            var issueType = parseInt($classfytlUlCur.attr('caseid'));
+            var orderBy = parseInt($timeRank.attr('timeorder'));
             _self.classifyPage(orderBy,issueType,selectConcern);
         });
     };
