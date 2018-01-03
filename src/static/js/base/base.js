@@ -280,9 +280,9 @@ class Base{
                 _self.ajaxFn(url, "POST", data, successFn, errFn, compFn);
                 //收藏
             }else{
-                var issueId = parseInt($that.attr("data-issueid"));
-                var issueCommentId = parseInt($that.attr("data-issuecommentid"));
-                var url = '/user/save-issue-collect',
+                var issueId = parseInt($that.attr("data-issueid")),
+                    issueCommentId = parseInt($that.attr("data-issuecommentid")),
+                    url = '/user/save-issue-collect',
                     data = {issueId: issueId, commentId: commentId};
                 function successFn(res){
                     $that.addClass('yes');
@@ -302,10 +302,10 @@ class Base{
     //新浪分享
     sinaShareEvent(dom){
         $(dom).on('click',function(){
-            var shareSinauserName =  $(this).attr('data-username') + ' '; //作者
-            var shareSinacontent = shareSinauserName+ $(this).attr('data-content'); //内容
-            var shareSinaurl = $(this).attr('data-shareurl'); //url
-            var sina = 'http://service.weibo.com/share/share.php?title='+shareSinacontent+'&url='+shareSinaurl;
+            var shareSinauserName =  $(this).attr('data-username') + ' ',
+                shareSinacontent = shareSinauserName+ $(this).attr('data-content'),
+                shareSinaurl = $(this).attr('data-shareurl'),
+                sina = 'http://service.weibo.com/share/share.php?title='+shareSinacontent+'&url='+shareSinaurl;
             window.open(sina);
         });
     };
@@ -346,9 +346,9 @@ class Base{
                 _self.ajaxFn(url, "POST", data, successFn, errFn, compFn);
                 //点赞
             }else{
-                var issueId = parseInt($that.attr("data-issueid"));
-                var issueCommentId = parseInt($that.attr("data-issuecommentid"));
-                var url = '/user/save-agree-info',
+                var issueId = parseInt($that.attr("data-issueid")),
+                    issueCommentId = parseInt($that.attr("data-issuecommentid")),
+                    url = '/user/save-agree-info',
                     data = {issueId: issueId, commentId: commentId};
                 function successFn(res){
                     $that.addClass('yes');
@@ -398,8 +398,8 @@ class Base{
             }
         });
         $(".searchInput").keydown(function(e) {
-            var theEvent = e || window.event;
-            var code = theEvent.keyCode || theEvent.which || theEvent.charCode;
+            var theEvent = e || window.event,
+                code = theEvent.keyCode || theEvent.which || theEvent.charCode;
             if (code == 13) {
                 e.preventDefault();
                 $(".searchBtn").click();

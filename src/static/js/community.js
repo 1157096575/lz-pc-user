@@ -5,7 +5,7 @@ class communityPage extends Base{
     constructor() {
         var config = {
             searchCon:'',
-            token: window.sessionStorage.getItem('token_user') || "1",
+            token: window.sessionStorage.getItem('token_user') || "1",//假设已登录
         }
         super(config);
     };
@@ -138,10 +138,10 @@ class communityPage extends Base{
     //分页
     searchResPage(curr){
         this.loading_new("#searchResDiv");
-        var _self = this;
-        var totalPage;
-        var content = $('.search .searchInput').val().replace(/\s/g, "") || "";
-        var orderBy = parseInt($(".rankRight .timeRank").attr("timeorder")) || 1;
+        var _self = this,
+            totalPage,
+            content = $('.search .searchInput').val().replace(/\s/g, "") || "",
+            orderBy = parseInt($(".rankRight .timeRank").attr("timeorder")) || 1;
         _self.forbidden();
         var url = '/user/get-all-issue-list',
             data = {
@@ -156,9 +156,9 @@ class communityPage extends Base{
             if(searchResData.length>0){
                 $(".rankRight").show();
                 totalPage = Math.ceil(res.data.total/15 )|| 0; 
-                for(var i=0; i<searchResData.length; i++){
-                    var comment = searchResData[i].comment || "";
-                    var queContent = searchResData[i].content || "";
+                for(var i=0, l = searchResData.length; i<l; i++){
+                    var comment = searchResData[i].comment || "",
+                        queContent = searchResData[i].content || "";
                     if(_self.judgeObj(comment)){
                         var commentCon = searchResData[i].comment.content || "";
                         if(commentCon){
@@ -173,8 +173,8 @@ class communityPage extends Base{
                         var realLength_queContent = _self.getStrLength(queContent) || 0;
                         searchResData[i].queContentStr = realLength_queContent>256 ? _self.substrIndexFn(queContent,256) : '';
                     }
-                    var contentStr = searchResData[i].content || "";
-                    var queContentStr = searchResData[i].queContentStr || "";
+                    var contentStr = searchResData[i].content || "",
+                        queContentStr = searchResData[i].queContentStr || "";
                     if(content && contentStr){
                         searchResData[i].content = _self.emphasizeKey(content,contentStr);
                         if(queContentStr){

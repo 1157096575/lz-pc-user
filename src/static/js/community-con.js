@@ -22,9 +22,9 @@ class commConPage extends Base{
     };
     //接收URL传递过来的参数
     getRequest(parm) {
-        var query = window.location.search;
-        var iLen = parm.length;
-        var iStart = query.indexOf(parm);
+        var query = window.location.search,
+            iLen = parm.length,
+            iStart = query.indexOf(parm);
         if (iStart == -1) return "";
         iStart += iLen + 1;
         var iEnd = query.indexOf("&", iStart);
@@ -303,10 +303,10 @@ class commConPage extends Base{
         if (_self.checknll(_self.config.token)) {
             return;
         }
-        var $that = $(self);
-        var replyid = parseInt($that.attr("data-replyid")); //回答id
-        var lawyerid = parseInt($that.attr("data-lawyerid")) || "";
-        var $domAskAgainBoxWrap = $that.parent().parent().siblings('.askAgainBoxWrap');
+        var $that = $(self),
+            replyid = parseInt($that.attr("data-replyid")),
+            lawyerid = parseInt($that.attr("data-lawyerid")) || "",
+            $domAskAgainBoxWrap = $that.parent().parent().siblings('.askAgainBoxWrap');
         if($domAskAgainBoxWrap.length>0){
             $that.removeClass('yes');
             $domAskAgainBoxWrap.remove();
@@ -353,10 +353,10 @@ class commConPage extends Base{
             var answerLength = askAgainData.length || 0;
             var $domCheckAll = $that.parent().parent().siblings('.askAgainBoxWrap').find('.checkAll');
             if(answerLength>3){
-                var $domAskCon = $that.parent().parent().siblings('.askAgainBoxWrap').find('.askCon');
-                var $domAskConList = $domAskCon.children('.askConList');
-                var domAskConListLength2 = $domAskCon.children('.askConList').length-3;
-                var $domAskConList2 = $domAskCon.children('.askConList:lt('+domAskConListLength2+')');
+                var $domAskCon = $that.parent().parent().siblings('.askAgainBoxWrap').find('.askCon'),
+                    $domAskConList = $domAskCon.children('.askConList'),
+                    domAskConListLength2 = $domAskCon.children('.askConList').length-3,
+                    $domAskConList2 = $domAskCon.children('.askConList:lt('+domAskConListLength2+')');
                 $domAskConList2.hide();
             } 
              _self.textP();
@@ -401,8 +401,8 @@ class commConPage extends Base{
             if($(this).text()<0){
                 $(this).text("0");
             }
-            var theEvent = e || window.event;
-            var code = theEvent.keyCode || theEvent.which || theEvent.charCode;
+            var theEvent = e || window.event,
+                code = theEvent.keyCode || theEvent.which || theEvent.charCode;
             if (code == 13) {
                 e.preventDefault();
                 var $dom = $(this).parent().siblings('.btnBox').children('.sureReply');
@@ -417,11 +417,11 @@ class commConPage extends Base{
     };
     //继续追问
     appendComment(self){
-        var _self = this;
-        var $that2 = $(self);
-        var $textP = $that2.parent().siblings('.replayInput').children('.textP');
-        var content = $textP.val().replace(/\s/g, "") || "";
-        var replyId = parseInt($that2.attr('data-replyid'));
+        var _self = this,
+            $that2 = $(self),
+            $textP = $that2.parent().siblings('.replayInput').children('.textP'),
+            content = $textP.val().replace(/\s/g, "") || "",
+            replyId = parseInt($that2.attr('data-replyid'));
         $textP.on('keydown', function(event) {
             content = content.length>256 ? content.substr(0,256) : content;
         });
@@ -433,9 +433,9 @@ class commConPage extends Base{
                 replyId : replyId
             },
         sucFn = function(res){
-            var replyHtml = '';
-            var contentLength = _self.getStrLength(content) || 0;
-            var contentSubstr = contentLength>180 ? _self.substrIndexFn(content,180) : "";
+            var replyHtml = '',
+                contentLength = _self.getStrLength(content) || 0,
+                contentSubstr = contentLength>180 ? _self.substrIndexFn(content,180) : "";
             replyHtml += '<div class="askConList">';
             replyHtml +=    '<div class="lawyerInfo">';
             replyHtml +=        '<div class="lawyerImg">';
@@ -459,18 +459,18 @@ class commConPage extends Base{
             $that2.parent().siblings('.replayInput').children('.textP').val("");
             $that2.parent().siblings('.replayInput').children('.replyNote').show();
             //处理追问信息
-            var $domAskCon = $that2.parent().parent().parent().siblings('.askCon');
-            var $domAskConList = $domAskCon.children('.askConList');
-            var domAskConListLength = $domAskCon.children('.askConList').length;
-            var $domAskTlLeft = $that2.parent().parent().parent().parent().siblings(".askAgainTl").find('.askTlLeft');
-            var allAskNum = parseInt($domAskTlLeft.attr('data-allasknum')) + 1 || 1;
+            var $domAskCon = $that2.parent().parent().parent().siblings('.askCon'),
+                $domAskConList = $domAskCon.children('.askConList'),
+                domAskConListLength = $domAskCon.children('.askConList').length,
+                $domAskTlLeft = $that2.parent().parent().parent().parent().siblings(".askAgainTl").find('.askTlLeft'),
+                allAskNum = parseInt($domAskTlLeft.attr('data-allasknum')) + 1 || 1;
             $domAskTlLeft.attr('data-allasknum', allAskNum);
             $domAskTlLeft.text(allAskNum+"条追问");
             if(domAskConListLength>3){
-                var domAskConListLength2 = $domAskCon.children('.askConList').length-3;
-                var $domAskConList2 = $domAskCon.children('.askConList:lt('+domAskConListLength2+')');
-                var domCheckAll = $that2.parent().parent().parent().parent().parent().siblings('.checkAll');
-                var restnum = parseInt(domCheckAll.attr('data-restnum'))+1 || 1;
+                var domAskConListLength2 = $domAskCon.children('.askConList').length-3,
+                    $domAskConList2 = $domAskCon.children('.askConList:lt('+domAskConListLength2+')'),
+                    domCheckAll = $that2.parent().parent().parent().parent().parent().siblings('.checkAll'),
+                    restnum = parseInt(domCheckAll.attr('data-restnum'))+1 || 1;
                 if(domCheckAll.hasClass('showAll')){
                     $domAskConList2.hide();
                     domCheckAll.text("查看其余"+restnum+"条");  
@@ -509,17 +509,17 @@ class commConPage extends Base{
     };
     //处理追问数据
     dealAskAgainData(res){
-        var _self = this;
-        var askAgainData = res.data || [];
-        for(var i=0; i<askAgainData.length; i++){
-            var askContent = askAgainData[i].content || "";
-            var askContentLength = _self.getStrLength(askContent) || 0;
-            var issueCommentListData = askAgainData[i].issueCommentList || [];
+        var _self = this,
+            askAgainData = res.data || [];
+        for(var i=0, l = askAgainData.length; i<l; i++){
+            var askContent = askAgainData[i].content || "",
+            askContentLength = _self.getStrLength(askContent) || 0,
+            issueCommentListData = askAgainData[i].issueCommentList || [];
             askAgainData[i].contentSubstr = askContent && askContentLength>180 ? _self.substrIndexFn(askContent,180) : '';
             if(issueCommentListData.length>0){
                 for(var j=0; j<issueCommentListData.length; j++){
-                    var issueCommentCon = issueCommentListData[j].content || "";
-                    var issueCommentConLength = _self.getStrLength(issueCommentCon) || 0;
+                    var issueCommentCon = issueCommentListData[j].content || "",
+                    issueCommentConLength = _self.getStrLength(issueCommentCon) || 0;
                     askAgainData[i].issueCommentList[j].contentSubstr = issueCommentCon && issueCommentConLength>156 ? _self.substrIndexFn(issueCommentCon,156) : '';
                 }
             }
@@ -578,13 +578,12 @@ class commConPage extends Base{
         if (_self.checknll(_self.config.token)) {
             return;
         }
-        var $that = $(self);
-        var replyid = parseInt($that.attr("data-replyid")); //回答id
-        var $myaskConBox = $that.parent().siblings('.askConBox')
-        var $myaskCon = $myaskConBox.children('.askCon');
-        
-        var mydiv = "<div class='myloading' style='height:70px; width:100%'></div>";
-        var $myloading = $myaskCon.find('.myloading');
+        var $that = $(self),
+            replyid = parseInt($that.attr("data-replyid")),
+            $myaskConBox = $that.parent().siblings('.askConBox'),
+            $myaskCon = $myaskConBox.children('.askCon'),
+            $myloading = $myaskCon.find('.myloading'),
+            mydiv = "<div class='myloading' style='height:70px; width:100%'></div>";
         if($myloading.length==0){
             $myaskCon.prepend(mydiv);
         }    
@@ -609,20 +608,20 @@ class commConPage extends Base{
             $(".myloading").css({
                 position: 'static'
             });
-            var askAgainData = _self.dealAskAgainData(res);
-            var askAgainText = _self.commonAskAgainText(askAgainData, 'this');
+            var askAgainData = _self.dealAskAgainData(res),
+                askAgainText = _self.commonAskAgainText(askAgainData, 'this'),
+                answerLength = askAgainData.length || 0,
+                $askTlLeft = $that.siblings(".askTlLeft"),
+                $domCheckAll = $that.parent().parent().siblings('.checkAll');
             $that.parent().siblings('.askConBox').children('.askCon').html(askAgainText);
-            var $askTlLeft = $that.siblings(".askTlLeft");
-            var answerLength = askAgainData.length || 0;
             $askTlLeft.attr('data-allasknum', answerLength);
-            $askTlLeft.text(answerLength+"条追问");
-            var $domCheckAll = $that.parent().parent().siblings('.checkAll');
+            $askTlLeft.text(answerLength+"条追问");         
             if(answerLength>3){
                 if($domCheckAll.hasClass('showAll')){
-                    var $domAskCon = $that.parent().siblings('.askConBox').children('.askCon');
-                    var $domAskConList = $domAskCon.children('.askConList');
-                    var domAskConListLength2 = $domAskCon.children('.askConList').length-3;
-                    var $domAskConList2 = $domAskCon.children('.askConList:lt('+domAskConListLength2+')');
+                    var $domAskCon = $that.parent().siblings('.askConBox').children('.askCon'),
+                        $domAskConList = $domAskCon.children('.askConList'),
+                        domAskConListLength2 = $domAskCon.children('.askConList').length-3,
+                        $domAskConList2 = $domAskCon.children('.askConList:lt('+domAskConListLength2+')');
                     $domAskConList2.hide();
                     $domCheckAll.attr('data-allasknum', answerLength-3);
                     $domCheckAll.text("查看其余"+(answerLength-3)+"条");
@@ -643,9 +642,9 @@ class commConPage extends Base{
     };
     //查看其余追问
     checkAllAskAgain(self){
-        var $that = $(self);
-        var restNum = $that.attr('data-restnum') || "";
-        var $domAskCon = $that.siblings('.askAgainBox').find('.askCon');
+        var $that = $(self),
+            $domAskCon = $that.siblings('.askAgainBox').find('.askCon'),
+            restNum = $that.attr('data-restnum') || "";
         if($that.hasClass('showAll')){
             $domAskCon.children('.askConList:lt('+restNum+')').show();
             $that.removeClass('showAll');
