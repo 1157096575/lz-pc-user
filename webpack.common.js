@@ -52,7 +52,8 @@ var html_plugins = function () {
       }
       if (filename in entriesFiles) {
           conf.inject = 'body'
-          conf.chunks = ['vendor', filename]
+          conf.chunks = ['vendor', filename],
+          conf.title = 'This is a title'
       }
       r.push(new HtmlWebpackPlugin(conf))
   }
@@ -95,7 +96,6 @@ module.exports = {
     filename: 'static/js/[name].[hash].js',
     publicPath: ""  //publicPath则用来指定资源文件引用的虚拟目录 e.g. publicPath: "/assets/"
   },
-  plugins: plugins.concat(html_plugins()),
   resolve: {
     extensions: ['.js','.css','json'],
     alias: {
@@ -133,6 +133,21 @@ module.exports = {
           {loader:'less-loader'},
           {loader:'sass-loader'}
         ]
+        /*use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            {loader:'css-loader', options: {url: false}}, //css路径不变 (注：css里的图片都写成'../images/xx.jpg'形式)
+            {loader:'postcss-loader',options: {
+              plugins: [
+                require('postcss-import'),
+                require('autoprefixer')
+              ],
+              browser: ['last 5 versions']
+            }},
+            {loader:'less-loader'},
+            {loader:'sass-loader'}
+          ]
+        })*/
       },
       {
         test: /\.html$/,
@@ -165,5 +180,6 @@ module.exports = {
         ]
       }
     ]
-  }
+  },
+  plugins: plugins.concat(html_plugins())
 }

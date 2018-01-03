@@ -24,6 +24,7 @@
                     <a href="community-ques.html" class="askBtn">提问</a>
                 </div>
             </div>
+            <div class="userImg"><img src="static/images/lcy.jpg" alt="" /></div>
         </div>
     </div>
     <div class="queAns_conWrap">
@@ -60,7 +61,7 @@
                         <div class="lawyerImg">
                             <img src="{{=value.userLogo}}" alt="" />
                         </div>
-                        <div class="lawyerName">{{=value.userName}}<span>{{=value.company}}</span></div>
+                        <div class="lawyerName">{{=value.userName}}<span>({{=value.company}})</span></div>
                     </div>
                     <div class="usefull">{{=value.agreeNum}}人觉得该回答有用</div>
                     <div class="answerCon">{{=value.content}}</div>
@@ -118,7 +119,7 @@
                 <div class="lawyerImg">
                     <img src="{{=value.userLogo}}" alt="" />
                 </div>
-                <div class="lawyerName">{{=value.userName}}<span>(律正律所)</span></div>
+                <div class="lawyerName">{{=value.userName}}<span>({{=value.company}})</span></div>
             </div>
             <div class="usefull">{{=value.agreeNum}}人觉得该回答有用</div>
             <div class="answerCon">{{=value.content}}</div>

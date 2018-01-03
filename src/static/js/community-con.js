@@ -558,7 +558,7 @@ class commConPage extends Base{
                     askAgainText +=           '</div>';
                     askAgainText +=         '<div class="allStr">';
                     askAgainText +=              '<span><i>'+myissueCommentItem.userName+'律师</i>：回复<i>'+askAgainData[i].userName+'</i>：</span>'+myissueCommentItem.content+'</div>';
-                    askAgainText +=         '<a class="showAnswer" href="javascript:;" onclick="showAllAnswer('+context+')">显示全部</a>';
+                    askAgainText +=         '<a class="showAnswer" href="javascript:;" onclick="commConPage.showAllAnswer('+context+')">显示全部</a>';
                 }else{
                     askAgainText +=          '<div class="subStr">';
                     askAgainText +=              '<span><i>'+myissueCommentItem.userName+'律师</i>：回复<i>'+askAgainData[i].userName+'</i>：</span>'+myissueCommentItem.content+'</div>';

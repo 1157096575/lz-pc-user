@@ -17,7 +17,7 @@ class Base{
                 <div class="footer clear">
                     <div class="right">
                         <p class="about">关于我们</p>
-                        <p class="web">华海律正（http://www.hao13322.com）是国内领先的法律服务平台，致力于为用户提供优质法律服务。华海律正成立至今以其诚信、透明、公平、高效、创新的特征赢得用户口碑。</p>
+                        <p class="web">华海律正是国内领先的法律服务平台，致力于为用户提供优质法律服务。华海律正成立至今以其诚信、透明、公平、高效、创新的特征赢得用户口碑。</p>
                         <div class="copy clear">
                             <p>Copyright © 2014-2017 lvzheng. All Rights Reserved</p>
                             <p>深圳市华海律正网络科技有限公司</p>
