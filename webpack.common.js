@@ -103,7 +103,7 @@ module.exports = {
       'base': resolve('js/base/base.js'),
       'mock': 'mockjs',
       'api-mock': resolve('js/mock/api-mock.js'),
-      'laypage': resolve('lib/laypage.js')
+      'laypage': resolve('lib/laypage-modify.js')
     }
   },
   module: {

@@ -50,41 +50,6 @@ class Base{
         }
         return realLength;
     };
-    //搜索关键词变红色
-    emphasizeKey(keyword, str) {
-        keyword = keyword.replace(/\s/g, "");
-        var arr = [];
-        var strArr = [];
-        var myhtml = '';
-        var flag = true;
-        for (var i = 0; i < keyword.length; i++) {
-            var keyItem = keyword[i];
-            for (var j = 0; j < arr.length; j++) {
-                if (keyItem == arr[j]) {
-                    flag = false;
-                    break;
-                }
-                flag = true;
-            }
-            if (flag) {
-                arr.push(keyItem);
-            }
-        }
-        for (var i = 0; i < str.length; i++) {
-            var itemStr = str[i];
-            strArr.push(itemStr);
-        }
-        for (var j = 0; j < strArr.length; j++) {
-            var item = strArr[j];
-            for (var k = 0; k < arr.length; k++) {
-                if (item == arr[k]) {
-                    strArr[j] = "<em style='color:#ff655f; display:inline-block;'>" + item + "</em>";
-                }
-            }
-            myhtml += strArr[j];
-        }
-        return myhtml;
-    };
     //截取字符串(l不为索引)
     substrIndexFn(str, l) {
         var realLength = 0,
@@ -382,18 +347,13 @@ class Base{
                 function successFn(res){
                     $that.removeClass('yes');
                     var agreeNum = parseInt($that.children('span').attr('data-agreenum'))-1;
-                    if(agreeNum<=9999){
-                        $that.children('span').text(agreeNum);
-                    }else{
-                       $that.children('span').text("9999+"); 
-                    }
+                    var agreeNumTxt = agreeNum <= 9999 ? agreeNum : '9999+';
+                    $that.children('span').text(agreeNumTxt);
                     $that.children('span').attr('data-agreenum',agreeNum);
                 }
                 function errFn(res){
-                    if (res) {
-                        var errmsg = "取消点赞失败"; //提示信息
-                        _self.errTip(errmsg);
-                    }
+                    var errmsg = "取消点赞失败";
+                    _self.errTip(errmsg);
                 }
                 function compFn(){
                     $that.removeClass('conListLikeClick');
@@ -408,18 +368,13 @@ class Base{
                 function successFn(res){
                     $that.addClass('yes');
                     var agreeNum = parseInt($that.children('span').attr('data-agreenum'))+1;
-                    if(agreeNum<=9999){
-                        $that.children('span').text(agreeNum);
-                    }else{
-                       $that.children('span').text("9999+"); 
-                    }
+                    var agreeNumTxt = agreeNum <= 9999 ? agreeNum : '9999+';
+                    $that.children('span').text(agreeNumTxt);
                     $that.children('span').attr('data-agreenum',agreeNum);
                 }
                 function errFn(res){
-                    if (res) {
-                        var errmsg = "点赞失败"; //提示信息
-                        _self.errTip(errmsg);
-                    }
+                    var errmsg = "点赞失败";
+                    _self.errTip(errmsg);
                 }
                 function compFn(){
                     $that.removeClass('conListLikeClick');
@@ -436,7 +391,7 @@ class Base{
             var searchCon = $(this).siblings('.searchInput').val().replace(/\s/g, "");
             if (searchCon) {
                 window.sessionStorage.setItem("searchCon_community", searchCon);
-                 window.location.href = "community.html"; //跳到社区首页
+                 window.location.href = "../community.html"; //跳到社区首页
             } else {
                 $(this).siblings('.searchInput').val("");
                 $(this).siblings('.note').show().addClass('red');

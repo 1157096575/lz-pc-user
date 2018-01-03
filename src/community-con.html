@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title></title>
+</head>
+<body>
+     <!-- header 问答社区模块跟其它模块的header不一样-->
+    <div class="headerWrap">
+        <div class="header quesAnswersHead clear">
+            <h1>
+                <a href="index.html"><img src="static/images/logo(2).png" alt="" /></a>
+            </h1>
+            <div class="nav quesAnswersTl clear">
+                <ul class="clear">
+                    <li><a href="community.html">问答社区</a></li>  <!-- 当前模块 current -->
+                    <li><a href="community-classify.html">分类</a></li>
+                </ul>
+                <div class="searchWrap clear">
+                    <div class="search">
+                        <input type="text" placeholder="搜索您感兴趣的内容" class="searchInput" />
+                        <a class="searchBtn" href="javascript:;"><i class="loupe"></i></a>
+                    </div>
+                    <a href="community-ques.html" class="askBtn">提问</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="queAns_conWrap">
+        <div class="queAns_con clear" id="issueInfoDiv">
+        </div>
+    </div>
+
+    <!-- footer -->
+    <div id="footerWrap"></div>
+
+    <!-- 问题信息 -->
+    <script type="text/template" id='issueInfoTmpl'>
+        {{?it}}
+        <div class="queAns_conLeft">
+            <div class="queAns_conQue">
+                <div class="que_label clear">
+                    <i>{{=it.caseType.name}}</i>
+                </div>
+                <div class="queContent">
+                    <div class="queImg">
+                        <img src="{{=it.userLogo}}" alt="" />
+                    </div>
+                    <div class="queConR">
+                        <div class="queDetail">{{=it.content}}</div>
+                    </div>
+                </div>
+            </div>
+            {{?it.commentList.length>0}}
+            <button class="queAns_moreAnsw" data-ismine="{{=it.isMine}}" onclick="commConPage.getMoreComment(this)">查看全部回答</button> 
+            <div class="queAns_answers" id="getMoreCommentDiv">
+                {{~it.commentList:value:index}}
+                <div class="answerList">
+                    <div class="lawyerInfo">
+                        <div class="lawyerImg">
+                            <img src="{{=value.userLogo}}" alt="" />
+                        </div>
+                        <div class="lawyerName">{{=value.userName}}<span>{{=value.company}}</span></div>
+                    </div>
+                    <div class="usefull">{{=value.agreeNum}}人觉得该回答有用</div>
+                    <div class="answerCon">{{=value.content}}</div>
+                    <div class="editTime">编辑于{{=value.createTime}}</div>
+                    <div class="icons">
+                        <ul class="clear">
+                            {{?value.isAgree}}
+                            <li class="support yes" data-agreenum="{{=value.agreeNum}}" data-replyid="{{=value.id}}" onclick="commConPage.agreeEvent(this)">{{=value.agreeNum}}条赞</li>
+                            {{??}}
+                            <li class="support" data-agreenum="{{=value.agreeNum}}" data-replyid="{{=value.id}}" onclick="commConPage.agreeEvent(this)">{{=value.agreeNum}}条赞</li>
+                            {{?}}
+                            {{?it.isMine}}
+                            <li class="askAgain" data-lawyerid="{{=value.userId}}" data-replyid="{{=value.id}}" onclick="commConPage.getAskAgain(this)">追问</li>
+                            {{?}}
+                            {{?value.isCollect}}
+                            <li class="collect yes" data-replyid="{{=value.id}}" onclick="commConPage.collectEvent(this)">取消收藏</li>
+                            {{??}}
+                            <li class="collect" data-replyid="{{=value.id}}" onclick="commConPage.collectEvent(this)">收藏</li>
+                            {{?}}
+                        </ul>
+                    </div>
+                </div>
+                {{~}}
+            </div>
+            <div id="getMoreCommentPage"></div>
+            {{?}}
+        </div>
+        <div class="queAns_conRight">
+            <div class="conRight_attentBox">
+                <div class="conRight_attent clear">
+                    <div class="attenrNo">
+                        <p class="number">{{=it.concernNum}}</p>
+                        <p>关注者</p>
+                    </div>
+                    <div class="scanNo">
+                        <p class="number">{{=it.readNum}}</p>
+                        <p>被浏览</p>
+                    </div>
+                </div>
+                {{?it.isConcern}}
+                <button class="attentBtn" onclick="commConPage.issueConcernEvent(this)">取消关注</button> 
+                {{??}}
+                <button class="attentBtn blue" onclick="commConPage.issueConcernEvent(this)">关注问题</button>
+                {{?}}
+            </div>
+        </div>
+        {{?}}
+    </script> 
+    <!-- 更多回答 -->
+     <script type="text/template" id='moreCommentTmpl'>
+        {{?it.length>0}}
+        {{~it:value:index}}
+        <div class="answerList">
+            <div class="lawyerInfo">
+                <div class="lawyerImg">
+                    <img src="{{=value.userLogo}}" alt="" />
+                </div>
+                <div class="lawyerName">{{=value.userName}}<span>(律正律所)</span></div>
+            </div>
+            <div class="usefull">{{=value.agreeNum}}人觉得该回答有用</div>
+            <div class="answerCon">{{=value.content}}</div>
+            <div class="editTime">编辑于{{=value.createTime}}</div>
+            <div class="icons">
+                <ul class="clear">
+                    {{?value.isAgree}}
+                    <li class="support yes" data-agreenum="{{=value.agreeNum}}" data-replyid="{{=value.id}}" onclick="commConPage.agreeEvent(this)" >{{=value.agreeNum}}条赞</li>
+                    {{??}}
+                    <li class="support" data-agreenum="{{=value.agreeNum}}" data-replyid="{{=value.id}}" onclick="commConPage.agreeEvent(this)" >{{=value.agreeNum}}条赞</li>
+                    {{?}}
+                    {{?value.isMine}}
+                    <li class="askAgain" data-id="{{=value.id}}" data-lawyerid="{{=value.userId}}" data-replyid="{{=value.id}}" onclick="commConPage.getAskAgain(this)">追问</li>
+                    {{?}}  <!-- 2017-6-6 增加律师id -->
+                    {{?value.isCollect}}
+                        <li class="collect yes" data-issueid="{{=it.id}}" data-replyid="{{=value.id}}" onclick="commConPage.collectEvent(this)">取消收藏</li>
+                    {{??}}
+                    <li class="collect" data-issueid="{{=it.id}}" data-replyid="{{=value.id}}" onclick="commConPage.collectEvent(this)">收藏</li>
+                    {{?}}
+                </ul>
+            </div>
+        </div>
+        {{~}}
+        {{?}}
+    </script>
+
+</body>
+</html>

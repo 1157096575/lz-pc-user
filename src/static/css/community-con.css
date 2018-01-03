@@ -1,0 +1,178 @@
+@import './base.css';
+.queAns_conWrap{width: 100%;background: #f5f5f5; padding: 56px 0;}
+.queAns_con{width: 960px; margin: 0 auto;}
+.queAns_conLeft{width: 640px; float: left;}
+.queAns_conLeft .queAns_conQue{width: 100%; background:#fff; padding:20px; border:1px solid #eee;}
+.queAns_conQue .que_label{width: 100%; margin-bottom: 20px;}
+.queAns_conQue .que_label i{display:block; float: left; height: 24px;line-height: 24px; padding:0 15px; color: #999; border:1px solid #d6d6d6; margin-right: 8px; border-radius: 5px;}
+.queAns_conQue .queContent{width: 100%; padding-left: 65px; position: relative; min-height: 56px;}
+.queAns_conQue .queContent .queImg{width: 56px; height: 56px;border-radius: 5px; overflow: hidden;position: absolute; top:0; left:0;}
+.queContent .queImg img{width: 56px;height: 56px; }
+.queContent .queConR{width: 100%;}
+.queContent .queConR .queTl{width: 100%; color:#333; line-height: 20px; font-size: 18px; padding-bottom: 10px; text-align: justify;}
+.queContent .queConR .queDetail{text-align: justify;}
+.queAns_moreAnsw{width: 100%; height: 56px;line-height: 56px; text-align: center; color:#999; border:1px solid #eee; margin:10px 0; background:#fff; outline: none; font-size: 16px; cursor: pointer;}
+.queAns_moreAnsw.current, .queAns_moreAnsw:hover{color:#06bafe;}
+.queAns_answers{width: 100%;}
+.queAns_answers .answerList{width: 100%; padding:20px; background:#fff; border:1px solid #eee; margin-top: 10px;}
+.queAns_answers .answerList .lawyerInfo{width: 100%; padding-left: 65px; position: relative;}
+.answerList .lawyerInfo .lawyerImg{width: 56px;height: 56px;border-radius: 5px; overflow:hidden; position: absolute; top:0; left:0;}
+.answerList .lawyerInfo .lawyerImg img{width: 56px; height: 56px;}
+.answerList .lawyerInfo .lawyerName{width: 100%; height: 56px;line-height: 56px; font-size: 16px; color:#333;text-overflow: ellipsis; white-space: nowrap; overflow:hidden;}
+.lawyerInfo .lawyerName span{font-size: 14px;}
+.answerList .usefull{color:#999; padding: 5px 0 10px;}
+.answerList .answerCon{font-size: 16px; line-height: 26px;}
+.answerList .editTime{color:#999; line-height: 50px; height: 50px;}
+
+.answerList .icons{width: 100%;}
+.answerList .icons li{float: left; margin-right: 20px; padding-left: 17px;position: relative; cursor:pointer;}
+/* .answerList .icons li:hover{color:#666;} */
+.answerList .icons li:hover{color:#06bafe;}
+.answerList .icons .collect.yes{padding-left: 0;}
+.answerList .icons .collect.yes::before{background:none; }
+.answerList .icons li::before{content:""; display:block; position: absolute; top:3px; left:0; width: 14px; height: 14px; background:url(../images/quesAnswersIcon.png) no-repeat -26px -94px;}
+.answerList .icons .askAgain::before{background-position: -90px -95px;}
+.answerList .icons .collect::before{background-position:-160px -97px ;}
+.answerList .icons .support:hover::before{background-position:-53px -94px ;}
+.answerList .icons .askAgain:hover::before{background-position:-119px -95px ;}
+.answerList .icons .collect:hover::before{background-position:-193px -97px ;}
+
+/* .icons{margin: 20px 0 0 70px; border-top: 1px solid #eee; padding:10px 0 0;}
+.icons li{float: left; margin-right: 26px;padding-left: 17px; position: relative; cursor:pointer; padding-bottom: 15px; width: 80px;}
+.icons li:hover{color:#06bafe;}
+.icons li.yes{padding-left: 0;}
+.icons li::before{content:""; display:block; position: absolute; top:3px; left:0; width: 14px; height: 14px; background:url(../../public/images/quesAnswersIcon.png) no-repeat -97px -20px;}
+.icons li.yes::before{background:none;}
+.icons .share::before{background-position: -173px -20px;}
+.icons .collect::before{background-position:-240px -20px;}
+.icons .attent:hover::before{background-position:-132px -19px ;}
+.icons .share:hover::before{background-position:-206px -20px ;}
+.icons .collect:hover::before{background-position:-273px -20px ;} 
+ */
+
+.answerList .askAgainBox{width: 100%; border:1px solid #eee; margin-top: 20px;}
+.answerList .askAgainBox .askAgainTl{padding:0 10px; height: 50px; line-height: 50px; border-bottom: 1px solid #eee;}
+.askAgainBox .askAgainTl .askTlLeft{float: left; color:#333; font-size: 16px;}
+.askAgainBox .askAgainTl .replyLoadAgain{width: 40px;height: 50px;display:block;background:url(../images/reload.png) no-repeat center; float: right; cursor:pointer;}
+.askAgainBox .askAgainTl .askTlRight{float: right;  cursor:pointer;position: relative;}
+.askAgainBox .askAgainTl .askTlRight a{color:#06bafe;}
+.askAgainBox .askAgainTl .askTlRight ul{padding:5px; box-shadow: 0 0 8px 2px #eee; position: absolute; right:0; top:45px;width: 100px; display:none;background:#fff;z-index: 1;}
+.askAgainBox .askAgainTl .askTlRight li{line-height: 34px; cursor:pointer;}
+.askAgainBox .askAgainTl .askTlRight li.current{color:#46c4fe;}
+.askAgainBox .replyWrap{padding:0 20px;}
+.askAgainBox .askConBox .askCon{max-height: 500px; overflow-y: scroll;padding:0 20px;}
+.askAgainBox .askConList {border-bottom: 1px solid #eee; padding: 20px 0;}
+.askAgainBox .askConList:last-child{border:0;}
+.askAgainBox .askConList .lawyerInfo{height: 40px; line-height: 40px; padding-left: 50px; margin-bottom: 8px;}
+.askAgainBox .askConList .lawyerImg{width: 40px;height: 40px;}
+.askAgainBox .askConList .lawyerImg img{width: 40px;height: 40px;}
+.askAgainBox .askConList .lawyerInfo .lawyerName{height: 40px; line-height: 40px;}
+.askAgainBox .askConList .answerCon{color:#666; line-height: 22px; font-size: 14px; text-align: justify; overflow:hidden; position: relative;}
+.askAgainBox .askConList .answerCon .allStr{display:none;}
+.askAgainBox .askConList .answerCon.showAll{height:auto; padding-bottom: 30px;}
+.askAgainBox .askConList .answerCon.showAll .allStr{display:block;}
+.askAgainBox .askConList .answerCon.showAll .subStr{display:none;}
+
+.askAgainBox .askCon .replyAnswerCon{margin-left: 50px;}
+.askAgainBox .askConList .answerCon .showAnswer{position: absolute; bottom:-4px; right:0; background:#fff; z-index: 1; padding-left: 3px; color:#46c4fe; }
+.answerIcons{width: 100%; margin: 20px 0 15px;}
+.answerIcons ul{float: right;}
+.answerIcons ul li{float: left; padding-left: 18px; position: relative; /* margin-right: 20px; */}
+.answerIcons ul li::before{content:""; display:block; width: 15px; height: 15px; background:url(../images/quesAnswersIcon.png) no-repeat -253px -96px;position: absolute; top:2px; left:0;}
+.answerIcons ul li.current, .answerIcons ul li:hover{color:#06bafe; cursor:pointer;}
+.answerIcons ul .noHelp:hover::before, .answerIcons ul .noHelp.current::before{background-position: -213px -139px;}
+.answerIcons ul .noHelp.revocate::before {background:none;}
+.answerIcons ul .reply::before{background-position: -253px -96px;}
+.answerIcons ul .reply:hover::before, .answerIcons ul .reply.current::before{background-position:  -279px -96px;}
+.replyBox{width: 100%; margin-top: 20px;}
+.replayInput, .firstAskBox .yourQuesBox{width: 100%;/*  min-height: 48px; */ height: 70px; position: relative; border:1px solid #eee;background:#fff;}
+.replayInput .replyNote, .firstAskBox .yourQuesBox .replyNote{position: absolute; display:block; height: 20px; top:8px; left:10px;color:#999;z-index: 1;}
+.replayInput .replyNote.red, .firstAskBox .yourQuesBox .replyNote.red{color: #ff655f!important; }
+.replayInput .textP, .firstAskBox .yourQuesBox .textP{width: 100%; line-height: 18px;/* min-height: 46px; */ height: 70px; padding:10px; position: absolute; top:0; left:0;z-index: 2; text-align: justify; box-sizing: border-box; outline:none; background:none; border:0;}
+.replayInput .replyNote.red{color:#ff655f;}
+.replayInput.focus .textP, .firstAskBox .yourQuesBox.focus .textP{position: static; /* max-height: 60px; */ overflow-y: scroll;}
+.replyBox .btnBox{float: right; padding:10px 0;}
+.replyBox .btnBox button{float: left; margin-left: 10px; width: 80px; height: 40px; line-height: 40px; text-align: center; outline:none; background:none; border:0; cursor:pointer; font-size: 16px;}
+.replyBox .btnBox .sureReply{background:#06bafe; color:#fff;}
+.replyBox .btnBox .sureReply:hover{background:#25a6d7;}
+.replyBox .btnBox .cancelReply{color:#999;}
+.replyBox .btnBox .cancelReply:hover{color:#06bafe; }
+.appendCommentFail{color:#ff655f; display:none;}
+.askAgainBox .reReplyBox{margin-left: 50px; background:#f5f5f5; padding:10px; margin-top: 10px;}
+.askAgainBox .reReplyBox .replyAnswerCon{margin-left: 0;}
+.askAgainBox .reReplyBox .replyBox{padding-left: 0;}
+.askAgainBox .reReplyBox .replyAnswerCon i{color:#06bafe;}
+.askAgainBox .reReplyBox .answerCon .showAnswer{background:#f5f5f5;}
+.checkAll{line-height: 50px; height: 50px; width: 50%; margin:0 auto; color:#999;text-align: center; outline:none; border:0; background:none; display:block; cursor:pointer; font-size: 16px;}
+.checkAll:hover{color:#06bafe;}
+.firstAskBox{padding:10px;}
+.firstAskBox h3{font-size: 16px; color:#333; line-height: 56px; height: 56px;}
+.firstAskBox .rewardBox{height: 48px;width: 100%;border:1px solid #eee; position: relative;}
+.firstAskBox .rewardBox .rewardInput{width: 100%;line-height: 26px; height: 46px; padding:10px; background:rgba(0,0,0,0.01); position: absolute; top:0; left:0;z-index: 2; cursor:pointer; border:0; box-sizing: border-box; outline:none;}
+.firstAskBox .rewardBox .rewardNote{display:block; height: 48px;line-height: 48px; position: absolute; top:0; left:10px;z-index: 1;color:#999;}
+.firstAskBox .rewardBox .rewardNote.red{color: #ff655f!important;}
+.firstAskBox .rewardBox ul{position: absolute; top:49px; left:0; background:#fff; width: 350px; padding:20px 10px 10px 20px;z-index: 2; box-shadow: 0 3px 8px #ccc; display:none;}
+.firstAskBox .rewardBox ul li{float: left; width: 150px;height: 50px;line-height: 50px; text-align: center; color:#333; font-size: 16px; margin:0 10px 10px 0; border:1px solid #eee; cursor:pointer; position: relative;}
+.firstAskBox .rewardBox ul li:hover, .firstAskBox .rewardBox ul li.current{border-color: #46c4fe;}
+.firstAskBox .rewardBox ul li:hover::after, .firstAskBox .rewardBox ul li.current::after{ content:""; display:block; border-top: 20px solid #46c4fe; border-left: 20px solid transparent; position: absolute; top:0; right:0;z-index: 1;}
+.firstAskBox .rewardBox ul li:hover::before, .firstAskBox .rewardBox ul li.current::before{content:"√";display:block; font-size: 12px; font-weight: 500; color:#fff; width: 20px;height: 20px;line-height: 20px; position: absolute; top:-2px; right:-6px;z-index: 2; font-family: "微软雅黑";}
+.firstAskBox .firstAskBtn{width: 80px;height: 44px;line-height: 44px; text-align: center; color:#fff; outline:none; border:0; margin:20px 0; float: right; background:#46c4fe; cursor:pointer;}
+.firstAskBox .firstAskBtn:hover{background:#5bb0d7;}
+.queAns_conRight{width: 310px;float: right;}
+.queAns_conRight .conRight_attentBox{width: 100%; padding:20px; background:#fff; border:1px solid #eee;}
+.queAns_conRight .conRight_attentBox .conRight_attent{width: 100%;}
+.conRight_attentBox .conRight_attent>div{float: left; width: 50%; text-align: center;}
+.conRight_attentBox .conRight_attent .attenrNo{border-right: 1px solid #eee;}
+.conRight_attentBox .conRight_attent .number{color:#333; font-size: 16px;}
+.conRight_attentBox .attentBtn{width: 98px; height: 34px; line-height: 34px; text-align: center;background:#eeeeee; color:#999; border-radius: 5px; outline:none; border:0; display:block; margin:20px auto 10px; cursor:pointer;}
+.conRight_attentBox .attentBtn.blue{background:#46c4fe; color:#fff;}
+.conRight_attentBox .attentBtn.blue:hover{background:#5bb0d7;}
+
+.relatedIssues{margin:10px 0; width: 100%; background:#fff; padding:20px 20px 50px 20px; border:1px solid #eee;}
+.relatedIssues h3{font-size: 18px; color:#333; margin-bottom: 10px;}
+.relatedIssues ul{width: 100%;}
+.relatedIssues ul li{width: 100%;}
+.relatedIssues ul li a{display:block; width: 100%; height: 32px; line-height: 32px; padding-right: 100px; text-overflow: ellipsis; white-space: nowrap; overflow:hidden; position: relative;}
+.relatedIssues ul li a span{position: absolute; right:0; top:0; color:#999;}
+.relatedIssues .noIssue{width: 100%; text-align: center; padding:100px 0;}
+#getMoreCommentPage>div{margin-top: 40px;}
+
+
+
+/* 提示框 */
+.paidTip{width: 370px;padding:40px; text-align: center; display:none; border-radius: 5px; background:#fff; position: fixed; top:50%; left:50%; z-index: 1000; -webkit-transform: translate(-50%,-50%);
+   -moz-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+     -o-transform: translate(-50%,-50%);
+        transform: translate(-50%,-50%); z-index: 1000;}
+.paidTip p{color:#666; line-height: 24px; padding-top: 60px; background:url(../images/warning2.png) no-repeat center top;}
+.paidTip p.success{background-image: url(../images/communitysuccess.png);}
+.paidTip input{width: 160px;height: 40px;font-size: 16px; color:#fff; line-height: 40px; text-align: center; margin-top: 35px; background: #ff9f00; border-radius: 3px; cursor:pointer;}
+.paidTip input:hover{background: #d88700;}
+.gotoPayClick{color:#999; display:block; text-decoration: underline; padding-top: 5px;}
+.gotoPayClick:hover{color:#06bafe;text-decoration: underline;}
+
+ /*谷歌360UC滚动条样式*/
+::-webkit-scrollbar, ::-webkit-scrollbar-track, ::-webkit-scrollbar-track-piece {
+    width: 6px;
+    height: 0; 
+    border-radius: 3px;
+    background: #fff;
+}
+::-webkit-scrollbar-thumb {
+    width: 6px;
+    border-radius: 3px;
+    background: #dedee7;
+}
+::-webkit-scrollbar-track {
+    background-color: white;
+}
+::-webkit-scrollbar-thumb {
+    background-color: #dedee7;
+}
+::-webkit-scrollbar-thumb:hover {
+    background-color: #dedee7;
+}
+::-webkit-scrollbar-thumb:active {
+    background-color: #dedee7;
+}
