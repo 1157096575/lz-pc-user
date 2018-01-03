@@ -242,7 +242,5 @@ Mock.mock(/\/user\/get-comment-id/,'get',{
   ]
 });
 Mock.mock(/\/user\/is-apply/,'get',{"code":1,"msg":"成功"});
-Mock.mock(/\/user\/append-comment/,'post',{
-    "code": 1,
-    "msg": "追加提问成功"
-});
+Mock.mock(/\/user\/append-comment/,'post',{"code": 1, "msg": "追加提问成功"});
+Mock.mock(/\/user\/save-issue/,'post',{"code":1,"msg":"成功"});

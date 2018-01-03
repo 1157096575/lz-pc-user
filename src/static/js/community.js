@@ -10,8 +10,6 @@ class communityPage extends Base{
         super(config);
     };
     ready(){  
-        console.log(this.config)
-        console.log(this.host);
         this.fillSearchData();
         this.searchResPage();
         this.timeRankFn();
@@ -104,12 +102,10 @@ class communityPage extends Base{
                 _self.searchResPage();
             }else{
                 $(this).siblings('.searchInput').val("");
-                //$(this).siblings('.searchInput').addClass('red');
                 $(this).siblings('.note').show().addClass('red');
             }
         });
         $('.search .searchInput').on('keydown', function(event) {
-            //$(this).removeClass('red');
             $(this).siblings('.note').hide().removeClass('red');
         });
         $(document).on('click', function (e) {
@@ -122,11 +118,9 @@ class communityPage extends Base{
             }
         });
         $(".searchInput").keydown(function(e) {
-            // 兼容FF和IE和Opera
             var theEvent = e || window.event;
             var code = theEvent.keyCode || theEvent.which || theEvent.charCode;
             if (code == 13) {
-                //回车执行查询
                 e.preventDefault();
                 if($(".searchBtn").attr('disabled')==true){
                     return;

@@ -10,7 +10,6 @@ class commClassifyPage extends Base{
         super(config);
     };
     ready(){  
-        var _self = this;
         console.log(this.host);
         this.classifyPage(1,-1,0);
         this.conditionFn();

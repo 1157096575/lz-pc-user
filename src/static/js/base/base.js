@@ -148,25 +148,6 @@ class Base{
             }
         })
     };
-    //处理ajax请求成功的数据
-    dealAjaxSucRes(res, fn) {
-        var _self = this;
-        if (res.code == 1) {
-            fn && fn(res);
-        } else if (res.code == 0) {
-            var errmsg = res.msg; //提示信息
-            _self.errTip(errmsg);
-        } else if (res.code == 10 || res.code == 11) {
-            sessionStorage.clear();
-            window.location.href = "./login.html";
-        } else if (res.code == 100) {
-            var errmsg = "律师未认证，无法进行此操作"; //提示信息
-            _self.errTip(errmsg);
-        } else {
-            var errmsg = res.msg; //提示信息
-            _self.errTip(errmsg);
-        }
-    };
     //请求错误提示框
     errTip(txt) { //txt为错误信息
         var errDivWrap = "<div class='errDivWrap'></div>";
@@ -200,13 +181,18 @@ class Base{
             return true;
         }
     };
+    //未登录
+    logoutState(){
+        var _self = this;
+        if (_self.checknll(_self.config.token)) {
+            return;
+        }
+    };
     //关注
     attentEvent(dom){
         var _self = this;
         $(dom).on('click', function(event) {
-            if (_self.checknll(_self.config.token)) {
-                return;
-            }
+            _self.logoutState();
             var $that = $(this);
             //取消关注
             if($that.hasClass('attentClick')){
@@ -252,12 +238,8 @@ class Base{
     collectEvent(dom){
         var _self = this;
         $(dom).on('click', function(event) {
-            if (_self.checknll(_self.config.token)) {
-                //未登录处理
-                return;
-            }
+            _self.logoutState();
             var $that = $(this);
-            console.log(_self.config.token)
             if($that.hasClass('collectClick')){
                 return;
             }
@@ -321,9 +303,7 @@ class Base{
     likeEvent(dom){
         var _self = this;
         $(dom).on('click', function(event) {
-            if (_self.checknll(_self.config.token)) {
-                return;
-            }
+            _self.logoutState();
             var $that = $(this);
             if($that.hasClass('conListLikeClick')){
                 return;

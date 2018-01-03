@@ -1,0 +1,85 @@
+@import './base.css';
+ /*谷歌360UC滚动条样式*/
+::-webkit-scrollbar, ::-webkit-scrollbar-track, ::-webkit-scrollbar-track-piece {
+    width: 6px;
+    border-radius: 3px;
+    background: #fff;
+}
+::-webkit-scrollbar-thumb {
+    width: 6px;
+    border-radius: 3px;
+    background: #dedee7;
+}
+::-webkit-scrollbar-track {
+    background-color: white;
+}
+::-webkit-scrollbar-thumb {
+    background-color: #dedee7;
+}
+::-webkit-scrollbar-thumb:hover {
+    background-color: #dedee7;
+}
+::-webkit-scrollbar-thumb:active {
+    background-color: #dedee7;
+}
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder { 
+color: #c6c6c6; 
+} 
+input:-moz-placeholder, textarea:-moz-placeholder { 
+color: #c6c6c6; 
+} 
+input::-moz-placeholder, textarea::-moz-placeholder { 
+color: #c6c6c6; 
+} 
+input:-ms-input-placeholder, textarea:-ms-input-placeholder { 
+color: #c6c6c6; 
+} 
+input.red::-webkit-input-placeholder, textarea.red::-webkit-input-placeholder{ 
+color: #ff655f; 
+} 
+input.red:-moz-placeholder, textarea.red:-moz-placeholder { 
+color: #ff655f; 
+} 
+input.red::-moz-placeholder, textarea.red::-moz-placeholder{ 
+color: #ff655f; 
+} 
+input.red:-ms-input-placeholder, textarea.red:-ms-input-placeholder{ 
+color: #ff655f; 
+} 
+.queAns_quesWrap{width: 100%; background:#f5f5f5; padding:56px 0;}
+.queAns_ques{width: 960px;margin:0 auto; }
+.queAns_ques .rankTl{width: 100%; height: 56px;line-height: 56px;}
+.queAns_ques .rankTl a{display:block; float: left; height: 56px; line-height: 56px; margin-right: 10px;}
+.queAns_ques .rankTl a.current{color:#46c4fe;}
+.queAns_ques .rankTl .relateRank{position: relative;}
+.queAns_ques .rankTl .agreeRank{margin-left: 10px;}
+.queAns_ques .rankTl .relateRank::after{content:""; border-right: 1px solid #999; display:block; height: 14px; position: absolute; top:50%; margin-top: -7px; right:-10px; }
+.queAns_ques .queAns_quesCon{width: 100%; background:#fff; border:1px solid #eee; padding:30px 100px 100px;}
+.queAns_ques .queAns_quesCon h3{font-size: 20px; color:#333; text-align: center; height: 40px; line-height: 40px;}
+.queAns_ques .queAns_quesCon h4{font-size: 16px; color:#333; padding:30px 0 20px;}
+.queAns_ques .queAns_quesCon .queDescribe{width: 100%; border:1px solid #eee; height: 150px;}
+.queAns_quesCon .queDescribe textarea{width: 100%;height: 110px;outline: none; border:0; padding:10px; margin:0; box-sizing: border-box;}
+.queAns_quesCon .queClassify{width: 100%; border:1px solid #eee; height: 46px; padding:10px; border:1px solid #eee; padding: 10px;position: relative;}
+.queClassify .classifyNote{position: absolute; display:block; padding: 0 10px; width: 100%;height: 46px; line-height: 46px;left:0; top:0;z-index: 1; font-size: 12px; color:#999; cursor:pointer;}
+.queClassify .classifyNote.red{color:#ff655f;}
+.queClassify .classifyNote i{font-size: 14px;}
+.queClassify .classifyInput{width: 100%; height: 46px;padding:10px; line-height: 26px; background:none; position: absolute; left:0; top:0;z-index: 1; cursor:pointer; display:none;}
+.queClassify .classifyInput p{color:#333; font-size: 16px; display:block; float: left; position: relative; padding-right: 35px; padding-left: 5px; border-radius: 5px; background:#e6f7ff; margin-right: 10px;}
+.queClassify .classifyInput span{/* display:none; */ padding-left: 5px; color:#999; display:block; float: left; border-left: 1px solid #999; padding-left: 10px;} 
+.queClassify .classifyInput p em{display:block; width: 25px; text-align: center; height: 20px;  position: absolute; top:3px; right:0;font-family: "微软雅黑"; background: url(../images/spirite.png) no-repeat -106px -364px;}
+.queAns_quesCon ul{position: absolute; top:47px; left:0; overflow-y: scroll; max-height: 220px; padding:10px 0; box-shadow: 0 0px 8px 2px #eee; background:#fff;z-index: 2;display:none;}
+.queAns_quesCon ul li:hover{color:#46c4fe;}
+.queAns_quesCon ul li{line-height: 40px; height: 40px; color:#333; padding:0 10px;min-width: 200px; cursor:pointer;}
+.submitBtn{width: 100px;height: 34px; text-align: center; line-height: 34px; display:block; margin:90px auto 0; outline:none; background:#fe9601; border:0; font-size: 16px; color:#fff; border-radius: 5px;cursor: pointer;}
+.submitBtn:hover{background:#d78c21;}
+/* 成功提示框 */
+.sucDivWrap{width: 100%;height: 100%;position: fixed; top:0; left:0; background:rgba(0,0,0,0.5);z-index: 99999;}
+.sucDivWrap .sucDiv{min-width: 350px; padding:40px; background:#fff; border-radius: 5px;position: absolute; top:50%; left:50%;text-align: center;
+    -webkit-transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);}
+.sucDivWrap .sucDiv2{min-width: 450px; padding:100px;}
+.sucDivWrap .sucDiv h3{padding-top: 85px; background:url(../images/bookSuccess.png) no-repeat center top;padding-bottom: 10px; font-size: 18px;color:#333;}
+.sucDivWrap .sucDiv2 h3{background-image: url(../images/successIcon.png); padding-top: 105px;}
