@@ -5,6 +5,7 @@ var path = require('path');
 var glob = require('glob');
 var path = require('path');
 var CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin; //将公共模块拆出来
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 let siteConfig = require('./config.js')
 let siteEnv = siteConfig[process.env.NODE_ENV +'Env'];
@@ -82,10 +83,19 @@ var plugins = [
     '__SiteEnv__': JSON.stringify(siteEnv)
   })
 ];
-plugins.push(new CommonsChunkPlugin({
+plugins.push(
+  new CommonsChunkPlugin({
     name: 'vendor',
     minChunks: Infinity
-}));
+  }),
+  new CopyWebpackPlugin([
+    {
+      from: path.resolve(process.cwd(), 'src/static/images'),
+      to: path.resolve(process.cwd(), 'dist/static/images')
+    }
+  ])
+);
+
 module.exports = {
   //entry: entries(),
   entry: Object.assign(entries(), {
@@ -120,7 +130,7 @@ module.exports = {
       },
       {
         test: /\.(less|css|sass)$/,
-        use: [
+        /*use: [
           {loader:'style-loader'},
           {loader:'css-loader'},
           {loader:'postcss-loader',options: {
@@ -132,8 +142,8 @@ module.exports = {
           }},
           {loader:'less-loader'},
           {loader:'sass-loader'}
-        ]
-        /*use: ExtractTextPlugin.extract({
+        ]*/
+        use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: [
             {loader:'css-loader', options: {url: false}}, //css路径不变 (注：css里的图片都写成'../images/xx.jpg'形式)
@@ -147,7 +157,7 @@ module.exports = {
             {loader:'less-loader'},
             {loader:'sass-loader'}
           ]
-        })*/
+        })
       },
       {
         test: /\.html$/,
