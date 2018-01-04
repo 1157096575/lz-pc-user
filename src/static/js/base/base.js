@@ -8,7 +8,6 @@ class Base{
     };
     ready() { 
         console.log('base');
-        this.searchCommunity();
     };
     footFn() {
         var aa = 1;
