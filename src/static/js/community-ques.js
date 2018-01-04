@@ -92,6 +92,7 @@ class commQuePage extends Base{
                 content = $.trim($(".queDescribe textarea").val()) || "",
                 issueType = parseInt($(".queClassify .classifyInput").attr('caseid')) || "",
                 issueTypeText = $(".classifyInput p i").text() || "";
+            console.log(content);
             if(content==""){
                 $(".queDescribe .note").addClass('red').show();
                 $('.queDescribe .note').val('');

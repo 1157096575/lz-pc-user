@@ -111,8 +111,8 @@ class commClassifyPage extends Base{
                         var commentCon = searchResData[i].comment.content || "";
                         if(commentCon){
                             var realLength_commentCon = _self.getStrLength(commentCon) || 0 ;
-                            if(realLength_commentCon>180){
-                                searchResData[i].comment.contentSubstr = _self.substrIndexFn(commentCon,180);
+                            if(realLength_commentCon>190){
+                                searchResData[i].comment.contentSubstr = _self.substrIndexFn(commentCon,190);
                             }else{
                                 searchResData[i].comment.contentSubstr = "";
                             }
@@ -123,8 +123,8 @@ class commClassifyPage extends Base{
                     }
                     if(queContent){
                         var realLength_queContent = _self.getStrLength(queContent) || 0;
-                        if(realLength_queContent>256){
-                            searchResData[i].queContentStr = _self.substrIndexFn(queContent,256);
+                        if(realLength_queContent>250){
+                            searchResData[i].queContentStr = _self.substrIndexFn(queContent,250);
                         }else{
                             searchResData[i].queContentStr = "";
                         }

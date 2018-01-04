@@ -1,13 +1,14 @@
-Mock.mock(/\/user\/delete-issue-concern/,'post',{"code":1,"msg":"成功"});
-Mock.mock(/\/user\/save-issue-concern/,'post',{"code":1,"msg":"成功"});
-Mock.mock(/\/user\/delete-issue-collect/,'post',{"code":1,"msg":"成功"});
-Mock.mock(/\/user\/save-issue-collect/,'post',{"code":1,"msg":"成功"});
-Mock.mock(/\/user\/delete-agree-info/,'post',{"code":1,"msg":"成功"});
-Mock.mock(/\/user\/save-agree-info/,'post',{"code":1,"msg":"成功"});
-Mock.mock(/\/user\/is-apply/,'get',{"code":1,"msg":"成功"});
-Mock.mock(/\/user\/append-comment/,'post',{"code": 1, "msg": "成功"});
-Mock.mock(/\/user\/save-issue/,'post',{"code":1,"msg":"成功"});
+Mock.mock(/\/user\/delete-issue-concern/,'post',{"code":1,"msg":"成功"}); //取消关注
+Mock.mock(/\/user\/save-issue-concern/,'post',{"code":1,"msg":"成功"}); //关注
+Mock.mock(/\/user\/delete-issue-collect/,'post',{"code":1,"msg":"成功"}); //取消收藏
+Mock.mock(/\/user\/save-issue-collect/,'post',{"code":1,"msg":"成功"}); //收藏
+Mock.mock(/\/user\/delete-agree-info/,'post',{"code":1,"msg":"成功"}); //取消点赞
+Mock.mock(/\/user\/save-agree-info/,'post',{"code":1,"msg":"成功"}); //点赞
+Mock.mock(/\/user\/is-apply/,'get',{"code":1,"msg":"成功"}); //追问
+Mock.mock(/\/user\/append-comment/,'post',{"code": 1, "msg": "成功"}); //继续追问
+Mock.mock(/\/user\/save-issue/,'post',{"code":1,"msg":"成功"}); //提问
 
+//全部问题（社区首页）
 var getAllIssueList = [];
 for (var i=0; i<3; i++) {
   getAllIssueList.push({"id":59,
@@ -44,6 +45,7 @@ Mock.mock(/\/user\/get-all-issue-list/,'get',{
   }
 });
 
+//问答分类
 var getIssueListType = [];
 for (var i=0; i<2; i++) {
   getIssueListType.push({"id":59,
@@ -77,9 +79,9 @@ Mock.mock(/\/user\/get-issue-list-type/,'get',{
     "items": getIssueListType
   }
 });
-
+//查询问题信息
 var getIssueInfo = [];
-for (var i=0; i<3; i++) {
+for (var i=0; i<2; i++) {
   getIssueInfo.push({
     "id": 1,
     "userId": 1927,
@@ -95,7 +97,6 @@ for (var i=0; i<3; i++) {
     "isAgree": false
   });
 }
-
 Mock.mock(/\/user\/get-issue-info/,'get',{
   "code": 1,
   "msg": "查询成功！",
@@ -112,7 +113,7 @@ Mock.mock(/\/user\/get-issue-info/,'get',{
       "name": "婚姻家庭"
     },
     "userLogo": "@image",
-    "userName": "哈哈哈哈哈",
+    "userName": "@cname()",
     "isMine": true
   }
 });
@@ -135,6 +136,8 @@ for (var i=0; i<2; i++) {
     "isMine" : true
   });
 }
+
+//更多回答
 Mock.mock(/\/user\/get-more-comment/,'get',{
   "code": 1,
   "msg": "问题回答查询成功",
@@ -181,6 +184,7 @@ for(var i= 0; i<6; i++) {
     ]
   })
 }
+//刷新追问信息
 Mock.mock(/\/user\/get-comment-id/,'get',{
   "code": 1,
   "msg": "追问信息查询成功",

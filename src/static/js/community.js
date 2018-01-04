@@ -157,7 +157,7 @@ class communityPage extends Base{
                         var commentCon = searchResData[i].comment.content || "";
                         if(commentCon){
                             var realLength_commentCon = _self.getStrLength(commentCon) || 0;
-                            searchResData[i].comment.contentSubstr = realLength_commentCon>180 ? _self.substrIndexFn(commentCon,180) : '';
+                            searchResData[i].comment.contentSubstr = realLength_commentCon>190 ? _self.substrIndexFn(commentCon,190) : '';
                             searchResData[i].comment.createTime = searchResData[i].comment.createTime.substr(0,10);
                         }
                     }else{
@@ -165,7 +165,7 @@ class communityPage extends Base{
                     }
                     if(queContent){
                         var realLength_queContent = _self.getStrLength(queContent) || 0;
-                        searchResData[i].queContentStr = realLength_queContent>256 ? _self.substrIndexFn(queContent,256) : '';
+                        searchResData[i].queContentStr = realLength_queContent>250 ? _self.substrIndexFn(queContent,250) : '';
                     }
                     var contentStr = searchResData[i].content || "",
                         queContentStr = searchResData[i].queContentStr || "";
