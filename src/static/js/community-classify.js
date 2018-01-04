@@ -111,11 +111,7 @@ class commClassifyPage extends Base{
                         var commentCon = searchResData[i].comment.content || "";
                         if(commentCon){
                             var realLength_commentCon = _self.getStrLength(commentCon) || 0 ;
-                            if(realLength_commentCon>190){
-                                searchResData[i].comment.contentSubstr = _self.substrIndexFn(commentCon,190);
-                            }else{
-                                searchResData[i].comment.contentSubstr = "";
-                            }
+                            searchResData[i].comment.contentSubstr = realLength_commentCon>190 ? _self.substrIndexFn(commentCon,190) : '';
                             searchResData[i].comment.createTime = searchResData[i].comment.createTime.substr(0,10);
                         }
                     }else{
@@ -123,11 +119,7 @@ class commClassifyPage extends Base{
                     }
                     if(queContent){
                         var realLength_queContent = _self.getStrLength(queContent) || 0;
-                        if(realLength_queContent>250){
-                            searchResData[i].queContentStr = _self.substrIndexFn(queContent,250);
-                        }else{
-                            searchResData[i].queContentStr = "";
-                        }
+                        searchResData[i].queContentStr = realLength_queContent>250 ? _self.substrIndexFn(queContent,250) : '';
                     }
                 }
                 laypage({
