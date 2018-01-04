@@ -6,6 +6,8 @@ webpack+es6搭建的多页项目; jquery, doT.js, mock.js, node.js, npm; 前后�
 
 ## Build Setup
 
+> css分离
+
 ``` bash
 # Clone this repo:
 git clone https://github.com/1157096575/lz-pc-user.git
